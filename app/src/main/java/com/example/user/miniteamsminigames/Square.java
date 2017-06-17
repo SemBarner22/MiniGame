@@ -4,9 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-/**
- * Created by User on 16.06.2017.
- */
 
 public class Square {
     private static final Paint paint = new Paint();
@@ -20,7 +17,7 @@ public class Square {
         paint.setColor(Color.BLACK);
     }
     public void draw(Canvas canvas) {
-        canvas.drawRect(x, y, w, h, paint);
+        canvas.drawRect(x, y, x + w, y + h, paint);
     }
 
 }

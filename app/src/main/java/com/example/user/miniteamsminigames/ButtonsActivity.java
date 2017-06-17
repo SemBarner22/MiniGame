@@ -32,8 +32,9 @@ public class ButtonsActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Main2Activity.class);
         startActivity(intent);
     }
+
 }
 
