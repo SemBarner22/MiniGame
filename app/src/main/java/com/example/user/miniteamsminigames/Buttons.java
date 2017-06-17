@@ -69,11 +69,11 @@ public class Buttons extends View {
             if (state == State.READY_TO_TAP) {
                 scoreFinal = score;
                 state = State.LOSE;
+                endGameButton.setText("kek");
+                gameWidgets.addView(endGameButton);
                 Log.d("1", "c");
             } else
                 state = State.LOSE;
-            endGameButton.setText("kek");
-            gameWidgets.addView(endGameButton);
             //  Intent intent = new Intent(Main2Activity.class, MainActivity.class);
         }
         return true;

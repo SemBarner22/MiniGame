@@ -6,15 +6,15 @@ import android.graphics.Paint;
 
 
 public class Square {
-    private static final Paint paint = new Paint();
+    Paint paint = new Paint();
     public int x, y, w, h;
 
-    public Square(int x, int y, int w, int h) {
+    public Square(int x, int y, int w, int h, Paint paint) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        paint.setColor(Color.BLACK);
+        this.paint = paint;
     }
     public void draw(Canvas canvas) {
         canvas.drawRect(x, y, x + w, y + h, paint);
