@@ -13,12 +13,15 @@ import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.View;
 
+import static com.example.user.miniteamsminigames.ButtonsActivity.endGameButton;
+import static com.example.user.miniteamsminigames.ButtonsActivity.gameWidgets;
+
 
 /**
  * Created by User on 16.06.2017.
  */
 
-public class Buttons extends View{
+public class Buttons extends View {
     private static final Paint color1 = new Paint();
     private static final Paint color2 = new Paint();
     private static final Paint text = new Paint();
@@ -69,6 +72,8 @@ public class Buttons extends View{
                 Log.d("1", "c");
             } else
                 state = State.LOSE;
+            endGameButton.setText("kek");
+            gameWidgets.addView(endGameButton);
             //  Intent intent = new Intent(Main2Activity.class, MainActivity.class);
         }
         return true;
@@ -99,7 +104,7 @@ public class Buttons extends View{
         public MyTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
-
+        @Override
         public void onTick(long millisUntilFinished) {
             k++;
             //  Log.d("l", "a" + k);

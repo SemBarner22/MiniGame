@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-
         start.setOnClickListener(listenerStart);
         Button options = (Button)findViewById(R.id.options);
         options.setText("Options");

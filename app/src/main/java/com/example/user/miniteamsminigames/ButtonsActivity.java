@@ -10,23 +10,23 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 public class ButtonsActivity extends Activity implements View.OnClickListener{
+    public static Button endGameButton;
+    public static LinearLayout gameWidgets;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         FrameLayout game = new FrameLayout(this);
         Buttons gameview = new Buttons(this);
-        LinearLayout gameWidgets = new LinearLayout(this);
-
-        Button endGameButton = new Button(this);
+        gameWidgets = new LinearLayout(this);
+        endGameButton = new Button(this);
         endGameButton.setWidth(300);
         endGameButton.setText("Start Game");
-
-        gameWidgets.addView(endGameButton);
+        //gameWidgets.addView(endGameButton);
+        endGameButton.setOnClickListener(this);
         game.addView(gameview);
         game.addView(gameWidgets);
         setContentView(game);
-        endGameButton.setOnClickListener(this);
     }
 
 
