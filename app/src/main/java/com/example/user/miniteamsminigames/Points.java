@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 
-
-public class Points extends View{
+public class Points extends View {
     private static final Paint bg = new Paint();
     private static final Paint black = new Paint();
     private static final Paint white = new Paint();
@@ -19,42 +19,44 @@ public class Points extends View{
     private ArrayList<Square> whiteSquares;
     public double V = 10;
     public int score = 0;
+    public int w, h;
     public State state = State.NOT_LOSE;
+
     public Points(Context context) {
         super(context);
-        bg.setColor(Color.BLACK);
-        //bg.setColor(Color.WHITE);
+        bg.setColor(Color.RED);
+//bg.setColor(Color.WHITE);
         black.setColor(Color.BLACK);
         white.setColor(Color.WHITE);
         squares = new ArrayList();
         whiteSquares = new ArrayList();
+        w = getWidth();
         restart();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
- //       if (whiteSquares.get(1).y + whiteSquares.get(1).h > getHeight()) {
-  //          for (int i = 0; i < 4; i++)
-  //              whiteSquares.add(new Square(i * getWidth() / 4, - getHeight() / 4, getWidth() / 4, getHeight() / 4, white));
-  //      }
+        canvas.drawRect(0, 0, getWidth(), getHeight(), bg);
+        if (whiteSquares.get(0).y + whiteSquares.get(0).h > getHeight()) {
+            for (int i = 0; i < 4; i++) {
+                whiteSquares.add(new Square(i * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, white));
+                whiteSquares.remove(0);
+            }
+        }
         if (squares.get(squares.size() - 1).y >= 0) {
             int random = (int) (Math.random() * 4);
-            squares.add(new Square(random * getWidth() / 4, - getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
+            squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
         }
-//        for (Square s:whiteSquares) {
-//            if (s.y + s.y > getHeight()) {
-//                if (whiteSquares.size() > 1)
-//                    whiteSquares.remove(s);
-//            } else
- //               s.draw(canvas);
- //       }
-        for (Square s:squares) {
+        for (Square s : whiteSquares) {
             s.draw(canvas);
         }
-   //     for (Square s : whiteSquares) {
-   //         s.y += V;
-   //     }
+        for (Square s : squares) {
+            s.draw(canvas);
+        }
+        for (Square s : whiteSquares) {
+            s.y += V;
+        }
         for (Square s : squares) {
             s.y += V;
         }
@@ -71,6 +73,7 @@ public class Points extends View{
         }
         invalidate();
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -89,17 +92,21 @@ public class Points extends View{
         }
         return true;
     }
+
     public void restart() {
         int random = (int) (Math.random() * 4);
         squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 whiteSquares.add(new Square(getWidth() / 4 * i, getHeight() / 4 * j, getWidth() / 4, getHeight() / 4, white));
+                Log.d("top", "" + getWidth());
+                Log.d("top", "" + w);
             }
         }
         score = 0;
         new MyTimer(1000L, 10).start();
     }
+
     class MyTimer extends CountDownTimer {
         public MyTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -112,8 +119,8 @@ public class Points extends View{
         @Override
         public void onFinish() {
             if (state != State.LOSE) {
-            V += 1;
-            new MyTimer(1000L, 10).start();
+                V += 1;
+                new MyTimer(1000L, 10).start();
             }
         }
 

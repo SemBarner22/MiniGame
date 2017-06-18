@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by User on 17.06.2017.

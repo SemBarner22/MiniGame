@@ -2,6 +2,7 @@ package com.example.user.miniteamsminigames;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
