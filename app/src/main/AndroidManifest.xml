@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".ButtonsActivity" />
-        <activity android:name=".PointsActivity"></activity>
+        <activity android:name=".PointsActivity" />
+        <activity android:name=".TapActivity"></activity>
     </application>
 
 </manifest>
