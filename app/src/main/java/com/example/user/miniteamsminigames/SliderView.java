@@ -73,7 +73,7 @@ public class SliderView extends View{
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         view.setColor(color);
         canvas.drawRect(0, 0, w, h, view);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             int q1 = (int) (Math.random() * w);
             int q2 = (int) (Math.random() * w);
             int p1 = (int) (Math.random() * h);
@@ -84,7 +84,7 @@ public class SliderView extends View{
             canvas.rotate((int) (Math.random() * 180));
             canvas.drawRect(Math.min(q1, q2), Math.min(p1, p2), Math.max(q1, q2), Math.max(p1, p2), view);
         }
-        postInvalidateDelayed(1000);
+        postInvalidateDelayed(1);
     }
 
     @Override

@@ -26,6 +26,8 @@ public class PauseTapActivity extends AppCompatActivity {
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
                 Intent intent = new Intent(PauseTapActivity.this, TapActivity.class);
                 startActivity(intent);
             }
@@ -37,6 +39,8 @@ public class PauseTapActivity extends AppCompatActivity {
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
                 Intent intent = new Intent(PauseTapActivity.this, MainActivity.class);
                 startActivity(intent);
             }

@@ -16,10 +16,17 @@ public class TapActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TapActivity.this, PausePointsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(TapActivity.this, PauseTapActivity.class);
+                startActivityForResult(intent, 1);
             }
         };
         pause.setOnClickListener(listener);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            finish();
+        }
     }
 }
