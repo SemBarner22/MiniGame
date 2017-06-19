@@ -8,8 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 public class PointsActivity extends AppCompatActivity {
-    public static Button endGameButton;
-    public static LinearLayout gameWidgets;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

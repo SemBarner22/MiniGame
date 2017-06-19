@@ -8,6 +8,6 @@ public class TapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new Tap_tap(this));
+        setContentView(R.layout.activity_tap);
     }
 }

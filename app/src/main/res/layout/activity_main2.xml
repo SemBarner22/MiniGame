@@ -31,11 +31,21 @@
             android:layout_height="71dp" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/layout2"
         android:layout_below="@id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/piano"
+            android:layout_width="match_parent"
+            android:layout_height="71dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/tap_tap"
             android:layout_width="match_parent"
             android:layout_height="71dp" />
     </LinearLayout>

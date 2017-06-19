@@ -64,17 +64,17 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Square ss = new Square(0, 0, getWidth(), getHeight(), bg);
+        Square ss = new Square(0, 0, getWidth(), getHeight(), bg, false);
         ss.draw(canvas);
         if (whiteSquares.get(0).y > getHeight()) {
             for (int i = 0; i < 4; i++) {
-                whiteSquares.add(new Square(i * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, white));
+                whiteSquares.add(new Square(i * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, white, false));
                 whiteSquares.remove(0);
             }
         }
         if (squares.get(squares.size() - 1).y >= 0) {
             int random = (int) (Math.random() * 4);
-            squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
+            squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black, false));
         }
         for (Square s : squares) {
             s.draw(canvas);
@@ -106,11 +106,11 @@ public class Points extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (state != State.LOSE) {
-                if (event.getX() > squares.get(0).x && event.getX() < squares.get(0).x + squares.get(0).w
-                        && event.getY() > squares.get(0).y && event.getY() < squares.get(0).y + squares.get(0).h) {
+                if (event.getX() > squares.get(1).x && event.getX() < squares.get(1).x + squares.get(1).w
+                        && event.getY() > squares.get(1).y && event.getY() < squares.get(1).y + squares.get(1).h) {
                     score++;
                     if (squares.size() != 1) {
-                        squares.remove(0);
+                        squares.remove(1);
                     }
                 } else {
                     state = State.LOSE;
@@ -123,10 +123,10 @@ public class Points extends View {
 
     public void restart() {
         int random = (int) (Math.random() * 4);
-        squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
+        squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black, false));
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                whiteSquares.add(new Square(getWidth() / 4 * i, getHeight() / 4 * j, getWidth() / 4, getHeight() / 4, white));
+                whiteSquares.add(new Square(getWidth() / 4 * i, getHeight() / 4 * j, getWidth() / 4, getHeight() / 4, white, false));
             }
         }
         score = 0;
