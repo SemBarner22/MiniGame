@@ -8,7 +8,7 @@ import android.graphics.Paint;
 public class Square {
     Paint paint = new Paint();
     public int x, y, w, h;
-    public boolean dir;
+    boolean dir;
 
     public Square(int x, int y, int w, int h, Paint paint, boolean dir) {
         this.x = x;
