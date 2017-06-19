@@ -5,12 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-
 
 public class Points extends View {
     private static final Paint bg = new Paint();
@@ -20,17 +21,44 @@ public class Points extends View {
     private ArrayList<Square> whiteSquares;
     public double V = 10;
     public int score = 0;
+    public int w, h;
     public State state = State.NOT_LOSE;
 
     public Points(Context context) {
         super(context);
-        bg.setColor(Color.YELLOW);
-        //bg.setColor(Color.WHITE);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    private void init() {
+        bg.setColor(Color.RED);
+//bg.setColor(Color.WHITE);
         black.setColor(Color.BLACK);
         white.setColor(Color.WHITE);
-        squares = new ArrayList();
-        whiteSquares = new ArrayList();
-        restart(getWidth(), getHeight());
+        squares = new ArrayList<>();
+        whiteSquares = new ArrayList<>();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        w = getMeasuredWidth();
+        restart();
     }
 
     @Override
@@ -93,14 +121,12 @@ public class Points extends View {
         return true;
     }
 
-    public void restart(int width, int height) {
+    public void restart() {
         int random = (int) (Math.random() * 4);
-        squares.add(new Square(random * width / 4, -height / 4, width / 4, height / 4, black));
+        squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                whiteSquares.add(new Square(width / 4 * i, height / 4 * j, width / 4, height / 4, white));
-                Log.d("KEK2", Integer.toString(width) + " " + Integer.toString(height));
-                Log.d("KOK", Integer.toString(getWidth() / 4 * i) + " " + Integer.toString(getHeight() / 4 * j));
+                whiteSquares.add(new Square(getWidth() / 4 * i, getHeight() / 4 * j, getWidth() / 4, getHeight() / 4, white));
             }
         }
         score = 0;
