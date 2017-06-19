@@ -70,21 +70,21 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Square ss = new Square(0, 0, w, h, bg1);
+        Square ss = new Square(0, 0, w, h, bg1, false);
         ss.draw(canvas);
-        ss = new Square(0, 0, w - 1, h, bg);
+        ss = new Square(0, 0, w - 1, h, bg, false);
         ss.draw(canvas);
         int diff = whiteSquares.get(0).y - h;
         if (diff >= 0) {
             for (int i = 0; i < 4; i++) {
-                whiteSquares.add(new Square(i * w / 4, 2 + diff + (-h / 4), w / 4 - 1, h / 4 - 1, white));
+                whiteSquares.add(new Square(i * w / 4, 2 + diff + (-h / 4), w / 4 - 1, h / 4 - 1, white, false));
                 whiteSquares.remove(0);
             }
         }
         diff = squares.get(squares.size() - 1).y;
         if (diff > 0) {
             int random = (int) (Math.random() * 4);
-            squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black));
+            squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black, false));
         }
         for (Square s : whiteSquares) {
             s.draw(canvas);
@@ -133,10 +133,10 @@ public class Points extends View {
 
     public void restart() {
         int random = (int) (Math.random() * 4);
-        squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black));
+        squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
         for (int i = 3; i >= -1; i--) {
             for (int j = 3; j >= 0; j--) {
-                whiteSquares.add(new Square(w / 4 * j, h / 4 * i, w / 4 - 1, h / 4 - 1, white));
+                whiteSquares.add(new Square(w / 4 * j, h / 4 * i, w / 4 - 1, h / 4 - 1, white, false));
             }
         }
         score = 0;
