@@ -69,7 +69,7 @@ public class Buttons extends View {
             if (state == State.READY_TO_TAP) {
                 scoreFinal = score;
                 state = State.LOSE;
-                endGameButton.setText("kek");
+                endGameButton.setText("Main menu");
                 gameWidgets.addView(endGameButton);
                 Log.d("1", "c");
             } else
@@ -78,6 +78,7 @@ public class Buttons extends View {
         }
         return true;
     }
+
     public void restart() {
         score = 0;
         state = State.WAITING;
@@ -104,6 +105,7 @@ public class Buttons extends View {
         public MyTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
+
         @Override
         public void onTick(long millisUntilFinished) {
             k++;

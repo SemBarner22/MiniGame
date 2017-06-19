@@ -13,14 +13,6 @@ public class PointsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FrameLayout game = new FrameLayout(this);
-        Points gameview = new Points(this);
-        gameWidgets = new LinearLayout(this);
-    //    endGameButton = new Button(this);
-    //    endGameButton.setWidth(300);
-        // endGameButton.setText("Start Game");
-        game.addView(gameWidgets);
-        game.addView(gameview);
-        setContentView(game);
+        setContentView(R.layout.activity_points);
     }
 }

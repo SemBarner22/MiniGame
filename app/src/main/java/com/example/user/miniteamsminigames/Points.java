@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,13 +26,38 @@ public class Points extends View {
 
     public Points(Context context) {
         super(context);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    public Points(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    private void init() {
         bg.setColor(Color.RED);
 //bg.setColor(Color.WHITE);
         black.setColor(Color.BLACK);
         white.setColor(Color.WHITE);
-        squares = new ArrayList();
-        whiteSquares = new ArrayList();
-        w = getWidth();
+        squares = new ArrayList<>();
+        whiteSquares = new ArrayList<>();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        w = getMeasuredWidth();
         restart();
     }
 
