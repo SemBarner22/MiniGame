@@ -42,6 +42,16 @@ public class Main2Activity extends AppCompatActivity {
             }
         };
         piano.setOnClickListener(listenerExit);
+        Button tap = (Button)findViewById(R.id.tap_tap);
+        tap.setText("Tap");
+        View.OnClickListener listenerStart1 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Main2Activity.this, TapActivity.class);
+                startActivity(intent);
+            }
+        };
+        tap.setOnClickListener(listenerStart1);
     }
 }
 
