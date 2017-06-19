@@ -48,8 +48,9 @@ public class Buttons extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (state == State.WAITING)
+        if (state == State.WAITING) {
             canvas.drawRect(0, 0, getWidth(), getHeight(), color1);
+        }
         if (state == State.READY_TO_TAP) {
             canvas.drawRect(0, 0, getWidth(), getHeight(), color2);
         }
