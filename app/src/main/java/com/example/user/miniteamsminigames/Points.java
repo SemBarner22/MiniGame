@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class Points extends View {
     private static final Paint bg = new Paint();
+    private static final Paint bg1 = new Paint();
     private static final Paint black = new Paint();
     private static final Paint white = new Paint();
     private ArrayList<Square> squares;
@@ -23,6 +24,7 @@ public class Points extends View {
     public int score = 0;
     public int w, h;
     public State state = State.NOT_LOSE;
+    boolean ans = false;
 
     public Points(Context context) {
         super(context);
@@ -45,8 +47,8 @@ public class Points extends View {
     }
 
     private void init() {
-        bg.setColor(Color.RED);
-//bg.setColor(Color.WHITE);
+        bg.setColor(Color.MAGENTA);
+        bg1.setColor(Color.BLACK);
         black.setColor(Color.BLACK);
         white.setColor(Color.WHITE);
         squares = new ArrayList<>();
@@ -58,28 +60,36 @@ public class Points extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         w = getMeasuredWidth();
-        restart();
+        h = getMeasuredHeight();
+        if (!ans) {
+            restart();
+            ans = true;
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Square ss = new Square(0, 0, getWidth(), getHeight(), bg);
+        Square ss = new Square(0, 0, w, h, bg1);
         ss.draw(canvas);
-        if (whiteSquares.get(0).y > getHeight()) {
+        ss = new Square(0, 0, w - 1, h, bg);
+        ss.draw(canvas);
+        int diff = whiteSquares.get(0).y - h;
+        if (diff >= 0) {
             for (int i = 0; i < 4; i++) {
-                whiteSquares.add(new Square(i * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, white));
+                whiteSquares.add(new Square(i * w / 4, 2 + diff + (-h / 4), w / 4 - 1, h / 4 - 1, white));
                 whiteSquares.remove(0);
             }
         }
-        if (squares.get(squares.size() - 1).y >= 0) {
+        diff = squares.get(squares.size() - 1).y;
+        if (diff > 0) {
             int random = (int) (Math.random() * 4);
-            squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
-        }
-        for (Square s : squares) {
-            s.draw(canvas);
+            squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black));
         }
         for (Square s : whiteSquares) {
+            s.draw(canvas);
+        }
+        for (Square s : squares) {
             s.draw(canvas);
         }
         for (Square s : whiteSquares) {
@@ -88,7 +98,7 @@ public class Points extends View {
         for (Square s : squares) {
             s.y += V;
         }
-        if (squares.get(0).y + squares.get(0).h > getHeight()) {
+        if (squares.get(0).y > h) {
             state = State.LOSE;
             V = 0;
         }
@@ -96,8 +106,8 @@ public class Points extends View {
             Paint text = new Paint();
             text.setColor(Color.BLUE);
             text.setTextAlign(Paint.Align.CENTER);
-            text.setTextSize(getWidth() / 6);
-            canvas.drawText("Score: " + score, getWidth() / 2, getHeight() / 2, text);
+            text.setTextSize(w / 6);
+            canvas.drawText("Score: " + score, w / 2, h / 2, text);
         }
         invalidate();
     }
@@ -123,14 +133,14 @@ public class Points extends View {
 
     public void restart() {
         int random = (int) (Math.random() * 4);
-        squares.add(new Square(random * getWidth() / 4, -getHeight() / 4, getWidth() / 4, getHeight() / 4, black));
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                whiteSquares.add(new Square(getWidth() / 4 * i, getHeight() / 4 * j, getWidth() / 4, getHeight() / 4, white));
+        squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black));
+        for (int i = 3; i >= -1; i--) {
+            for (int j = 3; j >= 0; j--) {
+                whiteSquares.add(new Square(w / 4 * j, h / 4 * i, w / 4 - 1, h / 4 - 1, white));
             }
         }
         score = 0;
-        new MyTimer(1000L, 10).start();
+        new MyTimer(3000L, 10).start();
     }
 
     class MyTimer extends CountDownTimer {
@@ -146,7 +156,7 @@ public class Points extends View {
         public void onFinish() {
             if (state != State.LOSE) {
                 V += 1;
-                new MyTimer(1000L, 10).start();
+                new MyTimer(3000L, 10).start();
             }
         }
 
