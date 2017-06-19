@@ -47,10 +47,10 @@ public class Points extends View {
     }
 
     private void init() {
-        bg.setColor(Color.MAGENTA);
+        bg.setColor(Color.WHITE);
         bg1.setColor(Color.BLACK);
-        black.setColor(Color.BLACK);
-        white.setColor(Color.WHITE);
+        black.setColor(Color.WHITE);
+        white.setColor(Color.BLACK);
         squares = new ArrayList<>();
         whiteSquares = new ArrayList<>();
     }
