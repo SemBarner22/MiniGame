@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -21,10 +22,13 @@ public class Tap_tap extends View{
     public ArrayList<Square> squares = new ArrayList<>();
     State state = State.NOT_LOSE;
     private static final Paint bg = new Paint();
+    private static final Paint bg2 = new Paint();
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    int V = 10;
+    int V = 5;
+    boolean ans = false;
+    boolean lr = false; // left - false, right - true
 
     public Tap_tap(Context context) {
         super(context);
@@ -47,8 +51,8 @@ public class Tap_tap extends View{
     }
 
     private void init() {
-        bg.setColor(Color.GREEN);
-        restart();
+        bg.setColor(Color.BLACK);
+        bg2.setColor(Color.WHITE);
     }
 
     @Override
@@ -56,31 +60,44 @@ public class Tap_tap extends View{
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         w = getMeasuredWidth();
         h = getMeasuredHeight();
-        d = getMeasuredWidth() / 8;
-        restart();
+        d = getMeasuredWidth() / 6;
+        if (!ans) {
+            restart();
+            ans = true;
+        }
     }
 
     private void restart() {
         for (int i = 0; i < 5; i++) {
-            squares.add(new Square(0, 0, 0, 0, bg, i % 2 == 1));
+            squares.add(new Square(0, 0, 0, 0, bg2, i % 2 == 1));
         }
-        int random = (int) (Math.random() * w / 4 + w / 2);
-        squares.add(new Square(- d / 2, random - d / 2, d, random, bg, true));
+        int random = (int) (Math.random() * w / 2 + w / 2);
+//        int random = 200;
+        Log.d("KEK111", Integer.toString(random));
+        squares.add(new Square(- d / 2, - random + d / 2, d, random, bg2, true));
         for (int i = 0; i < 20; i++) {
-            random = (int) (Math.random() * w / 4 + w / 2);
-            squares.add(new Square(squares.get(squares.size() - 1).x + random - d, squares.get(squares.size() - 1).y, random, d, bg, !squares.get(squares.size() - 1).dir));
+            random = (int) (Math.random() * w / 2 + w / 2);
+//            random = 200;
+            Log.d("KEK2", Integer.toString(random));
+            Square s = squares.get(squares.size() - 1);
+            if (s.dir) {
+                squares.add(new Square(s.x - random + d, s.y, random, d, bg2, !s.dir));
+            } else {
+                squares.add(new Square(s.x, s.y - random + d, d, random, bg2, !s.dir));
+            }
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(w / 2, h / 4);
+        canvas.drawRect(0, 0, w, h, bg);
+        canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         for (Square sq : squares) {
             sq.draw(canvas);
         }
-        if (squares.get(5).dir) { //true - vertical, false - horizontal
+        if (!lr) {
             for (Square sq : squares) {
                 sq.y += V;
             }
@@ -89,12 +106,13 @@ public class Tap_tap extends View{
                 sq.x += V;
             }
         }
+        canvas.drawRect(-10, -10, 20, 20, bg);
         invalidate();
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && state != State.LOSE) {
-            player.vx = - player.vx;
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            lr = !lr;
         }
         return true;
     }
