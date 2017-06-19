@@ -19,7 +19,8 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".ButtonsActivity" />
         <activity android:name=".PointsActivity" />
-        <activity android:name=".TapActivity"></activity>
+        <activity android:name=".TapActivity" />
+        <activity android:name=".SliderAct"></activity>
     </application>
 
 </manifest>

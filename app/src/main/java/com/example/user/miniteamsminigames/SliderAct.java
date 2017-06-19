@@ -3,11 +3,11 @@ package com.example.user.miniteamsminigames;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class TapActivity extends AppCompatActivity {
+public class SliderAct extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tap);
+        setContentView(R.layout.activity_slide);
     }
 }

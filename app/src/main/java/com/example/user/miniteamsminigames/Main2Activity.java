@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity {
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, TapActivity.class);
+                Intent intent = new Intent(Main2Activity.this, SliderAct.class);
                 startActivity(intent);
             }
         };
