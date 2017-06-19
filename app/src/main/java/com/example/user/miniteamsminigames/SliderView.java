@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,7 +19,11 @@ public class SliderView extends View{
 
     private static final ArrayList<Paint> bg = new ArrayList<>(4);
     private static final Paint view = new Paint();
+    private static final Paint text = new Paint();
     public int w, h;
+    State state;
+    boolean flag = false;
+    ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
     static final int MIN_DISTANCE = 150;
 
@@ -55,6 +60,13 @@ public class SliderView extends View{
         Paint yellowPaint = new Paint();
         yellowPaint.setColor(Color.YELLOW);
         bg.add(yellowPaint);
+        text.setColor(Color.BLACK);
+        text.setTextAlign(Paint.Align.CENTER);
+        states.add(State.S_D);
+        states.add(State.S_U);
+        states.add(State.S_L);
+        states.add(State.S_R);
+        restart();
     }
 
     @Override
@@ -69,22 +81,41 @@ public class SliderView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Random rnd = new Random();
-        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        view.setColor(color);
-        canvas.drawRect(0, 0, w, h, view);
-        for (int i = 0; i < 10000; i++) {
-            int q1 = (int) (Math.random() * w);
-            int q2 = (int) (Math.random() * w);
-            int p1 = (int) (Math.random() * h);
-            int p2 = (int) (Math.random() * h);
-            rnd = new Random();
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            view.setColor(color);
-            canvas.rotate((int) (Math.random() * 180));
-            canvas.drawRect(Math.min(q1, q2), Math.min(p1, p2), Math.max(q1, q2), Math.max(p1, p2), view);
+        if (state == State.S_D) {
+            canvas.drawText("Down", w / 2, h / 2, text);
+            new MyTimer(1000L, 30).start();
         }
-        postInvalidateDelayed(1);
+        if (state == State.S_U) {
+            canvas.drawText("Up", w / 2, h / 2, text);
+            new MyTimer(1000L, 30).start();
+        }
+        if (state == State.S_L) {
+            canvas.drawText("Left", w / 2, h / 2, text);
+            new MyTimer(1000L, 30).start();
+        }
+        if (state == State.S_R) {
+            canvas.drawText("Right", w / 2, h / 2, text);
+            new MyTimer(1000L, 30).start();
+        }
+        if (state == State.LOSE) {
+            Random rnd = new Random();
+            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            view.setColor(color);
+            canvas.drawRect(0, 0, w, h, view);
+            for (int i = 0; i < 10000; i++) {
+                int q1 = (int) (Math.random() * w);
+                int q2 = (int) (Math.random() * w);
+                int p1 = (int) (Math.random() * h);
+                int p2 = (int) (Math.random() * h);
+                rnd = new Random();
+                color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                view.setColor(color);
+                canvas.rotate((int) (Math.random() * 180));
+                canvas.drawRect(Math.min(q1, q2), Math.min(p1, p2), Math.max(q1, q2), Math.max(p1, p2), view);
+            }
+            postInvalidateDelayed(1);
+        }
+        invalidate();
     }
 
     @Override
@@ -105,18 +136,34 @@ public class SliderView extends View{
                 float deltaY = y2 - y1;
                 if (deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
                 {
+                    flag = true;
                     Log.d("direction", "RIGHT");
+                    if (state != State.S_R) {
+                        state = State.LOSE;
+                    }
                 }
                 else if (-deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
                 {
+                    flag = true;
                     Log.d("direction", "LEFT");
+                    if (state != State.S_L) {
+                        state = State.LOSE;
+                    }
                 }
                 else if (deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
                 {
+                    flag = true;
+                    if (state != State.S_D) {
+                        state = State.LOSE;
+                    }
                     Log.d("direction", "DOWN");
                 }
                 else if (-deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
                 {
+                    flag = true;
+                    if (state != State.S_U) {
+                        state = State.LOSE;
+                    }
                     Log.d("direction", "UP");
                 }
                 return true;
@@ -125,6 +172,29 @@ public class SliderView extends View{
     }
     public void restart()
     {
+        text.setTextSize(w / 6);
+        state = states.get((int) (Math.random() * 4));
+    }
+
+    class MyTimer extends CountDownTimer {
+
+        public MyTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            if (state != State.LOSE && flag) {
+                state = states.get((int) (Math.random() * 4));
+                flag = false;
+                Log.d("top", "kek");
+            }
+        }
 
     }
 }
