@@ -24,11 +24,11 @@ public class SliderView extends View {
     public int w, h;
     int timer = 0;
     State state;
-    int clock = 150;
+    int clock = 200;
     boolean flag = false;
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
-    static final int MIN_DISTANCE = 150;
+    static final int MIN_DISTANCE = 100;
 
     public SliderView(Context context) {
         super(context);
@@ -71,6 +71,12 @@ public class SliderView extends View {
         states.add(State.S_U);
         states.add(State.S_L);
         states.add(State.S_R);
+        states.add(State.NS_D);
+        states.add(State.NS_U);
+        states.add(State.NS_L);
+        states.add(State.NS_R);
+        states.add(State.N);
+        states.add(State.NN);
         restart();
     }
 
@@ -86,8 +92,8 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText("" + timer, w / 2, h / 8, Timer);
-        canvas.drawText(" " + (150 - clock), w / 2, 7 * h / 8, Timer);
+        canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);
+        canvas.drawText(" " + (200 - clock), w / 2, 7 * h / 8, Timer);
         if (state == State.S_D) {
             canvas.drawText("Down", w / 2, h / 2, text);
         }
@@ -99,6 +105,24 @@ public class SliderView extends View {
         }
         if (state == State.S_R) {
             canvas.drawText("Right", w / 2, h / 2, text);
+        }
+        if (state == State.NS_D) {
+            canvas.drawText("Not Down", w / 2, h / 2, text);
+        }
+        if (state == State.NS_U) {
+            canvas.drawText("Not Up", w / 2, h / 2, text);
+        }
+        if (state == State.NS_L) {
+            canvas.drawText("Not Left", w / 2, h / 2, text);
+        }
+        if (state == State.NS_R) {
+            canvas.drawText("Not Right", w / 2, h / 2, text);
+        }
+        if (state == State.N) {
+            canvas.drawText("Nothing", w / 2, h / 2, text);
+        }
+        if (state == State.NN) {
+            canvas.drawText("Not Nothing", w / 2, h / 2, text);
         }
         if (state == State.LOSE) {
             Random rnd = new Random();
@@ -119,11 +143,19 @@ public class SliderView extends View {
             postInvalidateDelayed(1);
         }
             if (timer == 0 && !flag) {
-                state = State.LOSE;
+                if (state == State.N) {
+                    state = states.get((int) (Math.random() * 10));
+                    flag = true;
+                } else {
+                    state = State.LOSE;
+                }
             }
             if (timer == 0 && state != State.LOSE && flag) {
                 flag = false;
                 clock--;
+                if (clock < 50) {
+                    clock++;
+                }
                 timer = clock;
             }
         timer--;
@@ -148,50 +180,60 @@ public class SliderView extends View {
                     Log.d("direction", "RIGHT");
                     timer = 0;
                     flag = true;
-                    if (state != State.S_R) {
+                    if (state == State.S_L || state == State.S_D || state == State.S_U || state == State.NS_R || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
                     else {
-                        while (state == State.S_R)
-                            state = states.get((int) (Math.random() * 4));
+                        state = states.get((int) (Math.random() * 10));
                     }
+                    //    while (state == State.S_R)
+                    //        state = states.get((int) (Math.random() * 8));
+                    //}
 
                 } else if (-deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY)) {
                     timer = 0;
                     flag = true;
                     Log.d("direction", "LEFT");
-                    if (state != State.S_L) {
+                    if (state == State.S_R || state == State.S_D || state == State.S_U || state == State.NS_L || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
                     else {
-                        while (state == State.S_L)
-                            state = states.get((int) (Math.random() * 4));
+                        state = states.get((int) (Math.random() * 10));
                     }
+                    //else {
+                    //    while (state == State.S_L)
+                    //        state = states.get((int) (Math.random() * 8));
+                    //}
                 } else if (deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX)) {
                     timer = 0;
                     flag = true;
-                    if (state != State.S_D) {
+                    if (state == State.S_R || state == State.S_L || state == State.S_U || state == State.NS_D || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
                     else {
-                        while (state == State.S_D)
-                            state = states.get((int) (Math.random() * 4));
+                        state = states.get((int) (Math.random() * 10));
                     }
+                    //else {
+                    //    while (state == State.S_D)
+                    //        state = states.get((int) (Math.random() * 8));
+                    //}
                     Log.d("direction", "DOWN");
                 } else if (-deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX)) {
                     timer = 0;
                     flag = true;
-                    if (state != State.S_U) {
+                    if (state == State.S_R || state == State.S_D || state == State.S_L || state == State.NS_U || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
+                    } else {
+                        state = states.get((int) (Math.random() * 10));
                     }
-                    else {
-                        while (state == State.S_U)
-                            state = states.get((int) (Math.random() * 4));
-                    }
+                    //else {
+                    //    while (state == State.S_U)
+                    //        state = states.get((int) (Math.random() * 8));
+                    //}
                     Log.d("direction", "UP");
                 }
                 return true;
@@ -202,7 +244,7 @@ public class SliderView extends View {
     public void restart() {
         text.setTextSize(w / 6);
         Timer.setTextSize(w / 6);
-        state = states.get((int) (Math.random() * 4));
+        state = states.get((int) (Math.random() * 10));
         timer = clock;
     }
 }
