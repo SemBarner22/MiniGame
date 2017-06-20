@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class SliderView extends View{
+public class SliderView extends View {
 
     private static final ArrayList<Paint> bg = new ArrayList<>(4);
     private static final Paint view = new Paint();
     private static final Paint text = new Paint();
     public int w, h;
+    CountDownTimer timer;
     State state;
-    boolean flag = false;
     boolean time = false;
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
@@ -116,10 +116,8 @@ public class SliderView extends View{
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        switch(event.getAction())
-        {
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 x1 = event.getX();
                 y1 = event.getY();
@@ -131,36 +129,49 @@ public class SliderView extends View{
                 Log.d("direction", "vыtknul");
                 float deltaX = x2 - x1;
                 float deltaY = y2 - y1;
-                if (deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
-                {
+                if (deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY) && !time) {
                     time = true;
                     Log.d("direction", "RIGHT");
                     if (state != State.S_R) {
                         state = State.LOSE;
+                        //text.setColor(Color.GREEN);
+                    }
+                    else {
+                        state = states.get((int) (Math.random() * 4));
+                        time = false;
                     }
 
-                }
-                else if (-deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
-                {
+                } else if (-deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY) && !time) {
                     time = true;
                     Log.d("direction", "LEFT");
                     if (state != State.S_L) {
                         state = State.LOSE;
+                        //text.setColor(Color.GREEN);
                     }
-                }
-                else if (deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
-                {
+                    else {
+                        time = false;
+                        state = states.get((int) (Math.random() * 4));
+                    }
+                } else if (deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX)&& !time) {
                     time = true;
                     if (state != State.S_D) {
                         state = State.LOSE;
+                        //text.setColor(Color.GREEN);
+                    }
+                    else {
+                        state = states.get((int) (Math.random() * 4));
+                        time = false;
                     }
                     Log.d("direction", "DOWN");
-                }
-                else if (-deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
-                {
+                } else if (-deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX) && !time) {
                     time = true;
                     if (state != State.S_U) {
                         state = State.LOSE;
+                        //text.setColor(Color.GREEN);
+                    }
+                    else {
+                        state = states.get((int) (Math.random() * 4));
+                        time = false;
                     }
                     Log.d("direction", "UP");
                 }
@@ -168,36 +179,35 @@ public class SliderView extends View{
         }
         return super.onTouchEvent(event);
     }
-    public void restart()
-    {
+
+    public void restart() {
         text.setTextSize(w / 6);
         state = states.get((int) (Math.random() * 4));
-        new MyTimer(3000L, 30).start();
-    }
+        timer = new CountDownTimer(6000, 300) {
 
-    class MyTimer extends CountDownTimer {
-
-        public MyTimer(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-            if (time) {
-               // onFinish();
+            public void onTick(long millisUntilFinished) {
+                //called every 300 milliseconds, which could be used to
+                //send messages or some other action
+              //  if (time) {
+              //      cancel();
+                    //onFinish();
+           //     }
             }
-        }
 
-        @Override
-        public void onFinish() {
-            if (state != State.LOSE && time) {
-                state = states.get((int) (Math.random() * 4));
-                time = false;
-                Log.d("top", "kek");
-                new MyTimer(3000L, 30).start();
-            } else
-                state = State.LOSE;
-        }
-
+            public void onFinish() {
+                //After 60000 milliseconds (60 sec) finish current
+                //if you would like to execute something when time finishes
+          //      if (state != State.LOSE && time) {
+          //          state = states.get((int) (Math.random() * 4));
+           //         time = false;
+            //        Log.d("top", "kek");
+            //        timer.start();
+            //    } else {
+            //        state = State.LOSE;
+                    //text.setColor(Color.RED);
+         //       }
+            }
+        }.start();
     }
 }
+
