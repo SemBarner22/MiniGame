@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import static android.R.attr.process;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

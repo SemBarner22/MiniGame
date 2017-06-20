@@ -23,6 +23,7 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/btns"
+            android:textSize="25dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content">
         <Button
             android:background="@mipmap/button"
+            android:textSize="25dp"
             android:id="@+id/btnslide"
             android:layout_width="200dp"
             android:layout_height="100dp" />
@@ -49,6 +51,7 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/piano"
+            android:textSize="25dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>
@@ -60,6 +63,7 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/tap_tap"
+            android:textSize="25dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>

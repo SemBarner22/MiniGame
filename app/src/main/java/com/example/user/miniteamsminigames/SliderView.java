@@ -181,7 +181,8 @@ public class SliderView extends View {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
-                    else {
+                    else
+                        if (state != State.LOSE){
                         state = states.get((int) (Math.random() * 10));
                     }
                     //    while (state == State.S_R)
@@ -196,7 +197,8 @@ public class SliderView extends View {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
-                    else {
+                    else
+                    if (state != State.LOSE){
                         state = states.get((int) (Math.random() * 10));
                     }
                     //else {
@@ -210,7 +212,8 @@ public class SliderView extends View {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
                     }
-                    else {
+                    else
+                    if (state != State.LOSE) {
                         state = states.get((int) (Math.random() * 10));
                     }
                     //else {
@@ -224,8 +227,9 @@ public class SliderView extends View {
                     if (state == State.S_R || state == State.S_D || state == State.S_L || state == State.NS_U || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
-                    } else {
-                        state = states.get((int) (Math.random() * 10));
+                    } else
+                        if (state != State.LOSE){
+                            state = states.get((int) (Math.random() * 10));
                     }
                     //else {
                     //    while (state == State.S_U)

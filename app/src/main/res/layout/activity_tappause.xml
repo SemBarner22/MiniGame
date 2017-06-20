@@ -1,63 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <Space
         android:id="@+id/space"
         android:layout_width="100dp"
-        android:layout_height="75dp" />
+        android:layout_height="50dp" />
     <LinearLayout
         android:id="@+id/layout"
         android:layout_below="@id/space"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@mipmap/resume"
+            android:id="@+id/resume"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_below="@id/layout"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
+        android:gravity="center"
         android:layout_height="wrap_content">
-        <Space
-            android:id="@+id/space1"
-            android:layout_width="wrap_content"
-            android:layout_height="71dp" />
         <Button
-            android:id="@+id/resume"
-            android:background="@mipmap/esume"
-            android:layout_width="71dp"
-            android:layout_height="71dp" />
-        <Space
-            android:id="@+id/space2"
-            android:layout_width="40dp"
-            android:layout_height="71dp" />
-        <Button
-            android:id="@+id/restart"
             android:background="@mipmap/restart"
-            android:layout_width="71dp"
-            android:layout_height="71dp" />
-        <Space
-            android:id="@+id/space3"
-            android:layout_width="40dp"
-            android:layout_height="71dp" />
-        <Button
-            android:id="@+id/exit"
-            android:layout_width="71dp"
-            android:background="@mipmap/mainmenu"
-            android:layout_height="71dp" />
+            android:id="@+id/restart"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_below="@id/layout1"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content">
+        <Button
+            android:background="@mipmap/mainmenu"
+            android:id="@+id/exit"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
 
 </RelativeLayout>
-
-
-

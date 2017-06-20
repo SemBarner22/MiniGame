@@ -1,5 +1,6 @@
 package com.example.user.miniteamsminigames;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +13,10 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/PRICEDOW.TTF");
         Button btns = (Button)findViewById(R.id.btns);
+        btns.setTypeface(tf);
         btns.setText("Button Click");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
@@ -23,6 +27,7 @@ public class Main2Activity extends AppCompatActivity {
         };
         btns.setOnClickListener(listenerStart);
         Button btnslide = (Button)findViewById(R.id.btnslide);
+        btnslide.setTypeface(tf);
         btnslide.setText("Slider");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
@@ -33,6 +38,7 @@ public class Main2Activity extends AppCompatActivity {
         };
         btnslide.setOnClickListener(listenerOptions);
         Button piano = (Button)findViewById(R.id.piano);
+        piano.setTypeface(tf);
         piano.setText("Piano");
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override
@@ -43,6 +49,7 @@ public class Main2Activity extends AppCompatActivity {
         };
         piano.setOnClickListener(listenerExit);
         Button tap = (Button)findViewById(R.id.tap_tap);
+        tap.setTypeface(tf);
         tap.setText("Tap");
         View.OnClickListener listenerStart1 = new View.OnClickListener() {
             @Override

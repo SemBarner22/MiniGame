@@ -13,7 +13,7 @@ public class PausePointsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pointspause);
         Button start = (Button)findViewById(R.id.resume);
-        //start.setText("esume");
+        //start.setText("resume");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
