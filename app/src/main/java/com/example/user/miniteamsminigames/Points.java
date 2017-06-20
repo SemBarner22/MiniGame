@@ -25,6 +25,7 @@ public class Points extends View {
     public int w, h;
     public State state = State.NOT_LOSE;
     boolean ans = false;
+    int intans = 0;
 
     public Points(Context context) {
         super(context);
@@ -61,9 +62,13 @@ public class Points extends View {
 
         w = getMeasuredWidth();
         h = getMeasuredHeight();
-        if (!ans) {
+//        if (!ans) {
+//            restart();
+//            ans = true;
+//        }
+        intans++;
+        if (intans == 2) {
             restart();
-            ans = true;
         }
     }
 
@@ -134,7 +139,7 @@ public class Points extends View {
     public void restart() {
         int random = (int) (Math.random() * 4);
         squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
-        for (int i = 3; i >= -1; i--) {
+        for (int i = 4; i >= -1; i--) {
             for (int j = 3; j >= 0; j--) {
                 whiteSquares.add(new Square(w / 4 * j, h / 4 * i, w / 4 - 1, h / 4 - 1, white, false));
             }

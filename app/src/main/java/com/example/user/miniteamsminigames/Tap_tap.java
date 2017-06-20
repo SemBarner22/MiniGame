@@ -27,6 +27,7 @@ public class Tap_tap extends View{
     int w, h, d;
     Tap_Player player;
     int V = 5;
+    int point = 10;
     boolean ans = false;
     boolean lr = false; // left - false, right - true
 
@@ -68,9 +69,6 @@ public class Tap_tap extends View{
     }
 
     private void restart() {
-        for (int i = 0; i < 5; i++) {
-            squares.add(new Square(0, 0, 0, 0, bg2, i % 2 == 1));
-        }
         int random = (int) (Math.random() * w / 2 + w / 2);
 //        int random = 200;
         Log.d("KEK111", Integer.toString(random));
@@ -94,6 +92,15 @@ public class Tap_tap extends View{
         canvas.drawRect(0, 0, w, h, bg);
         canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
+        boolean kek = false;
+        for (Square s : squares) {
+            if (s.x * (s.x + s.w) <= 0 && s.y * (s.y + s.h) <= 0) {
+                kek = true;
+            }
+        }
+        if (!kek) {
+            state = State.LOSE;
+        }
         for (Square sq : squares) {
             sq.draw(canvas);
         }
@@ -106,7 +113,29 @@ public class Tap_tap extends View{
                 sq.x += V;
             }
         }
-        canvas.drawRect(-10, -10, 20, 20, bg);
+        canvas.drawRect(-point, -point, 2 * point, 2 * point, bg);
+        Square firstsquare = squares.get(0);
+        if (firstsquare.y > h / 2) {
+            squares.remove(0);
+            int random = (int) (Math.random() * w / 2 + w / 2);
+            Log.d("KEK2", Integer.toString(random));
+            Square s = squares.get(squares.size() - 1);
+            if (s.dir) {
+                squares.add(new Square(s.x - random + d, s.y, random, d, bg2, !s.dir));
+            } else {
+                squares.add(new Square(s.x, s.y - random + d, d, random, bg2, !s.dir));
+            }
+        }
+        if (state == State.LOSE) {
+            canvas.rotate(-45);
+            canvas.translate(- w / 2, - 3 * h / 4);
+            Paint text = new Paint();
+            text.setColor(Color.BLUE);
+            text.setTextAlign(Paint.Align.CENTER);
+            text.setTextSize(w / 6);
+            V = 0;
+            canvas.drawText("Score: ", w / 2, h / 2, text);
+        }
         invalidate();
     }
     @Override
