@@ -21,8 +21,7 @@
         <activity android:name=".PointsActivity" />
         <activity android:name=".TapActivity" />
         <activity android:name=".SliderAct" />
-        <activity android:name=".PausePointsActivity"
-            android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".PausePointsActivity"/>
         <activity android:name=".PauseTapActivity" />
         <activity android:name=".PauseSliderActivity"></activity>
     </application>
