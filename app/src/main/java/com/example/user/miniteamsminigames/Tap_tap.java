@@ -30,6 +30,7 @@ public class Tap_tap extends View{
     int point = 0;
     double score = 0;
     double dt = 0.01;
+    double cnt = 0;
     boolean ans = false;
     boolean lr = false; // left - false, right - true
 
@@ -64,7 +65,7 @@ public class Tap_tap extends View{
         w = getMeasuredWidth();
         h = getMeasuredHeight();
         d = getMeasuredWidth() / 6;
-        point = d / 8;
+        point = d / 10;
         if (!ans) {
             restart();
             ans = true;
@@ -97,7 +98,8 @@ public class Tap_tap extends View{
         canvas.rotate(45);
         boolean kek = false;
         for (Square s : squares) {
-            if (s.x * (s.x + s.w) <= 0 && s.y * (s.y + s.h) <= 0) {
+            if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
+                    (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {
                 kek = true;
             }
         }
@@ -136,7 +138,13 @@ public class Tap_tap extends View{
 
         if (state == State.NOT_LOSE) {
             score += dt;
-            V += 1;
+            if (cnt > 10) {
+                V += 1;
+                cnt = 0;
+                Log.d("LOL", "lol");
+            } else {
+                cnt += dt;
+            }
         }
         canvas.rotate(-45);
         canvas.translate(- w / 2, - 3 * h / 4);
