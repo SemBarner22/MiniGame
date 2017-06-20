@@ -6,14 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.example.user.miniteamsminigames.PointsActivity">
 
-    <Button
-        android:text="Zzzz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <com.example.user.miniteamsminigames.Points
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ImageButton
+        android:id="@+id/pause"
+        app:srcCompat="@mipmap/pause_button"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
 
 

@@ -13,7 +13,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Button btns = (Button)findViewById(R.id.btns);
-        btns.setText("Buttons");
+        btns.setText("Button Click");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,7 +23,7 @@ public class Main2Activity extends AppCompatActivity {
         };
         btns.setOnClickListener(listenerStart);
         Button btnslide = (Button)findViewById(R.id.btnslide);
-        btnslide.setText("Button Slide");
+        btnslide.setText("Slider");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {

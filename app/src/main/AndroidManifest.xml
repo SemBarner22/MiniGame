@@ -20,7 +20,10 @@
         <activity android:name=".ButtonsActivity" />
         <activity android:name=".PointsActivity" />
         <activity android:name=".TapActivity" />
-        <activity android:name=".SliderAct"></activity>
+        <activity android:name=".SliderAct" />
+        <activity android:name=".PausePointsActivity" />
+        <activity android:name=".PauseTapActivity" />
+        <activity android:name=".PauseSliderActivity"></activity>
     </application>
 
 </manifest>
