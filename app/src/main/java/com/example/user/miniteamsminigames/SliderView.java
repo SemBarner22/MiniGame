@@ -23,6 +23,7 @@ public class SliderView extends View{
     public int w, h;
     State state;
     boolean flag = false;
+    boolean time = false;
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
     static final int MIN_DISTANCE = 150;
@@ -83,21 +84,17 @@ public class SliderView extends View{
         super.onDraw(canvas);
         if (state == State.S_D) {
             canvas.drawText("Down", w / 2, h / 2, text);
-            new MyTimer(1000L, 30).start();
         }
         if (state == State.S_U) {
             canvas.drawText("Up", w / 2, h / 2, text);
-            new MyTimer(1000L, 30).start();
         }
         if (state == State.S_L) {
             canvas.drawText("Left", w / 2, h / 2, text);
-            new MyTimer(1000L, 30).start();
         }
         if (state == State.S_R) {
             canvas.drawText("Right", w / 2, h / 2, text);
-            new MyTimer(1000L, 30).start();
         }
-        if (state == State.LOSE) {
+        if (state == State.NOT_LOSE) {
             Random rnd = new Random();
             int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
             view.setColor(color);
@@ -136,15 +133,16 @@ public class SliderView extends View{
                 float deltaY = y2 - y1;
                 if (deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
                 {
-                    flag = true;
+                    time = true;
                     Log.d("direction", "RIGHT");
                     if (state != State.S_R) {
                         state = State.LOSE;
                     }
+
                 }
                 else if (-deltaX > MIN_DISTANCE && Math.abs(deltaX) > Math.abs(deltaY))
                 {
-                    flag = true;
+                    time = true;
                     Log.d("direction", "LEFT");
                     if (state != State.S_L) {
                         state = State.LOSE;
@@ -152,7 +150,7 @@ public class SliderView extends View{
                 }
                 else if (deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
                 {
-                    flag = true;
+                    time = true;
                     if (state != State.S_D) {
                         state = State.LOSE;
                     }
@@ -160,7 +158,7 @@ public class SliderView extends View{
                 }
                 else if (-deltaY > MIN_DISTANCE && Math.abs(deltaY) > Math.abs(deltaX))
                 {
-                    flag = true;
+                    time = true;
                     if (state != State.S_U) {
                         state = State.LOSE;
                     }
@@ -174,6 +172,7 @@ public class SliderView extends View{
     {
         text.setTextSize(w / 6);
         state = states.get((int) (Math.random() * 4));
+        new MyTimer(3000L, 30).start();
     }
 
     class MyTimer extends CountDownTimer {
@@ -184,16 +183,20 @@ public class SliderView extends View{
 
         @Override
         public void onTick(long millisUntilFinished) {
-
+            if (time) {
+               // onFinish();
+            }
         }
 
         @Override
         public void onFinish() {
-            if (state != State.LOSE && flag) {
+            if (state != State.LOSE && time) {
                 state = states.get((int) (Math.random() * 4));
-                flag = false;
+                time = false;
                 Log.d("top", "kek");
-            }
+                new MyTimer(3000L, 30).start();
+            } else
+                state = State.LOSE;
         }
 
     }
