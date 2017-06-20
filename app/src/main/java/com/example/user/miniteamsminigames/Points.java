@@ -19,6 +19,7 @@ public class Points extends View {
     private static final Paint black = new Paint();
     private static final Paint white = new Paint();
     private ArrayList<Square> squares;
+    private ArrayList<Square> squares2;
     private ArrayList<Square> whiteSquares;
     public double V = 10;
     public int score = 0;
@@ -48,11 +49,12 @@ public class Points extends View {
     }
 
     private void init() {
-        bg.setColor(Color.MAGENTA);
+        bg.setColor(Color.BLACK);
         bg1.setColor(Color.BLACK);
         black.setColor(Color.BLACK);
         white.setColor(Color.WHITE);
         squares = new ArrayList<>();
+        squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
     }
 
@@ -90,8 +92,12 @@ public class Points extends View {
         if (diff > 0) {
             int random = (int) (Math.random() * 4);
             squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black, false));
+            squares2.add(new Square(random * w / 4, diff - h / 4, w / 4, h / 4, white, false));
         }
         for (Square s : whiteSquares) {
+            s.draw(canvas);
+        }
+        for (Square s : squares2) {
             s.draw(canvas);
         }
         for (Square s : squares) {
@@ -101,18 +107,24 @@ public class Points extends View {
             s.y += V;
         }
         for (Square s : squares) {
+            s.y += V;
+        }
+        for (Square s : squares2) {
             s.y += V;
         }
         if (squares.get(0).y > h) {
             state = State.LOSE;
             V = 0;
         }
-        if (state == State.LOSE) {
-            Paint text = new Paint();
-            text.setColor(Color.BLUE);
-            text.setTextAlign(Paint.Align.CENTER);
+        Paint text = new Paint();
+        text.setColor(Color.RED);
+        text.setTextAlign(Paint.Align.CENTER);
+        if (state == State.NOT_LOSE) {
             text.setTextSize(w / 6);
-            canvas.drawText("Score: " + score, w / 2, h / 2, text);
+            canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
+        } else {
+            text.setTextSize(w / 3);
+            canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
         }
         invalidate();
     }
@@ -126,6 +138,7 @@ public class Points extends View {
                     score++;
                     if (squares.size() != 1) {
                         squares.remove(0);
+                        squares2.remove(0);
                     }
                 } else {
                     state = State.LOSE;

@@ -26,7 +26,7 @@ public class Tap_tap extends View{
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    double V = 6;
+    double V = 3;
     int point = 0;
     double score = 0;
     double dt = 0.01;
@@ -149,14 +149,24 @@ public class Tap_tap extends View{
         canvas.rotate(-45);
         canvas.translate(- w / 2, - 3 * h / 4);
         Paint text = new Paint();
-        text.setColor(Color.BLUE);
+        text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);
         text.setTextSize(w / 6);
-        if ((int) (score * 100) % 100 >= 10) {
-            canvas.drawText("Score: " + (int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 2, text);
-        } else {
-            canvas.drawText("Score: " + (int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 2, text);
+        if (state == State.NOT_LOSE) {
+            if ((int) (score * 100) % 100 >= 10) {
+                canvas.drawText((int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 8, text);
+            } else {
+                canvas.drawText((int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 8, text);
 
+            }
+        } else {
+            text.setTextSize(w / 3);
+            if ((int) (score * 100) % 100 >= 10) {
+                canvas.drawText((int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 2, text);
+            } else {
+                canvas.drawText((int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 2, text);
+
+            }
         }
         invalidate();
     }
