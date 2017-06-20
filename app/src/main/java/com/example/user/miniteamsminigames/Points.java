@@ -121,8 +121,12 @@ public class Points extends View {
         text.setTextAlign(Paint.Align.CENTER);
         if (state == State.NOT_LOSE) {
             text.setTextSize(w / 6);
-            canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
+            // шрифтик
+            PointsActivity.tv.setVisibility(View.VISIBLE);
+            PointsActivity.tv.setText(" " + score);
+           // canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
+            PointsActivity.tv.setVisibility(View.INVISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
         }

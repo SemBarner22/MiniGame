@@ -1,17 +1,28 @@
 package com.example.user.miniteamsminigames;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class PointsActivity extends AppCompatActivity {
+    public static Button tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points);
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/PRICEDOW.TTF");
+        tv = (Button) findViewById(R.id.tv);
+        tv.setTextColor(Color.RED);
+        tv.setTypeface(tf);
+        //tv.setVisibility(View.INVISIBLE);
+        tv.setText("239");
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -22,6 +33,7 @@ public class PointsActivity extends AppCompatActivity {
         };
         pause.setOnClickListener(listener);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
