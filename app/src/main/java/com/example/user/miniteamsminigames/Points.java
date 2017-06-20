@@ -1,17 +1,18 @@
-package com.example.user.miniteamsminigames;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
+        package com.example.user.miniteamsminigames;
 
-import java.util.ArrayList;
+        import android.content.Context;
+        import android.graphics.Canvas;
+        import android.graphics.Color;
+        import android.graphics.Paint;
+        import android.os.CountDownTimer;
+        import android.support.annotation.Nullable;
+        import android.util.AttributeSet;
+        import android.util.Log;
+        import android.view.MotionEvent;
+        import android.view.View;
+
+        import java.util.ArrayList;
 
 public class Points extends View {
     private static final Paint bg = new Paint();
@@ -128,6 +129,7 @@ public class Points extends View {
                         squares.remove(0);
                     }
                 } else {
+
                     state = State.LOSE;
                     V = 0;
                 }

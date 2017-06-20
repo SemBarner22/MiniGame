@@ -1,5 +1,6 @@
 package com.example.user.miniteamsminigames;
 
+import android.animation.ArgbEvaluator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,18 +15,22 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.graphics.Color.BLACK;
+
 
 public class SliderView extends View {
 
-    private static final ArrayList<Paint> bg = new ArrayList<>(4);
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
     private static final Paint text = new Paint();
     public int w, h;
-    int timer = 0;
+    float timer = 0;
+    int deltaw = 0;
+    int x = 65280;
     State state;
-    int clock = 150;
+    float clock = 150;
     boolean flag = false;
+    Paint col = new Paint();
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
     static final int MIN_DISTANCE = 150;
@@ -51,19 +56,7 @@ public class SliderView extends View {
     }
 
     private void init() {
-        Paint bluePaint = new Paint();
-        bluePaint.setColor(Color.BLUE);
-        bg.add(bluePaint);
-        Paint greenPaint = new Paint();
-        greenPaint.setColor(Color.GREEN);
-        bg.add(greenPaint);
-        Paint redPaint = new Paint();
-        redPaint.setColor(Color.RED);
-        bg.add(redPaint);
-        Paint yellowPaint = new Paint();
-        yellowPaint.setColor(Color.YELLOW);
-        bg.add(yellowPaint);
-        text.setColor(Color.BLACK);
+        text.setColor(BLACK);
         text.setTextAlign(Paint.Align.CENTER);
         Timer.setColor(Color.RED);
         Timer.setTextAlign(Paint.Align.CENTER);
@@ -123,15 +116,24 @@ public class SliderView extends View {
             }
             if (timer == 0 && state != State.LOSE && flag) {
                 flag = false;
-                clock--;
+                if (clock > 75) {
+                    clock--;
+                }
                 timer = clock;
             }
+
+        ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+        Integer evaluatedColor = (Integer) argbEvaluator.evaluate(1 - timer / clock, Color.GREEN, Color.RED);
+        col.setColor(evaluatedColor);
+        canvas.drawRect(w / 8, h / 6, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8), h / 3, col);
         timer--;
         invalidate();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        x = 65280;
+        deltaw = 0;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 x1 = event.getX();
