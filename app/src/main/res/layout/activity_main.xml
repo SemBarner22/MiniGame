@@ -5,6 +5,11 @@
     android:background="@mipmap/ic_launcher_round"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:src="@mipmap/fon"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <Space
         android:id="@+id/space"
         android:layout_width="100dp"
