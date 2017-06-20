@@ -33,7 +33,7 @@ public class Buttons extends View {
 
     public Buttons(Context context) {
         super(context);
-        Log.d("1", "kek");
+        Log.d("1", "Main menu");
         color1.setColor(Color.RED);
         color2.setColor(Color.GREEN);
         text.setColor(Color.BLACK);
@@ -128,6 +128,5 @@ public class Buttons extends View {
         }
 
     }
-
 
 }
