@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -12,7 +13,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Button btns = (Button)findViewById(R.id.btns);
+        ImageButton btns = (ImageButton)findViewById(R.id.btns);
         btns.setText("Button Click");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
@@ -22,7 +23,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         };
         btns.setOnClickListener(listenerStart);
-        Button btnslide = (Button)findViewById(R.id.btnslide);
+        ImageButton btnslide = (ImageButton)findViewById(R.id.btnslide);
         btnslide.setText("Slider");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
@@ -32,7 +33,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         };
         btnslide.setOnClickListener(listenerOptions);
-        Button piano = (Button)findViewById(R.id.piano);
+        ImageButton piano = (ImageButton)findViewById(R.id.piano);
         piano.setText("Piano");
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override
@@ -42,7 +43,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         };
         piano.setOnClickListener(listenerExit);
-        Button tap = (Button)findViewById(R.id.tap_tap);
+        ImageButton tap = (ImageButton)findViewById(R.id.tap_tap);
         tap.setText("Tap");
         View.OnClickListener listenerStart1 = new View.OnClickListener() {
             @Override

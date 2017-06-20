@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button start = (Button)findViewById(R.id.start);
+        ImageButton start = (ImageButton)findViewById(R.id.start);
         start.setText("Start Game");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         start.setOnClickListener(listenerStart);
-        Button options = (Button)findViewById(R.id.options);
+        ImageButton options = (ImageButton)findViewById(R.id.options);
         options.setText("Options");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override

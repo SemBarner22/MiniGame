@@ -26,7 +26,7 @@ public class Tap_tap extends View{
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    double V = 5;
+    double V = 6;
     int point = 0;
     double score = 0;
     double dt = 0.01;
@@ -136,7 +136,7 @@ public class Tap_tap extends View{
 
         if (state == State.NOT_LOSE) {
             score += dt;
-//            V += dt / 10000000;
+            V += 1;
         }
         canvas.rotate(-45);
         canvas.translate(- w / 2, - 3 * h / 4);
