@@ -13,11 +13,9 @@
         android:layout_below="@id/space"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/resume"
-            android:layout_width="match_parent"
-            android:layout_height="71dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout1"
@@ -25,19 +23,39 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
         android:layout_height="wrap_content">
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="42dp"
+            android:layout_height="71dp" />
+        <Button
+            android:id="@+id/resume"
+            android:background="@mipmap/esume"
+            android:layout_width="71dp"
+            android:layout_height="71dp" />
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="42dp"
+            android:layout_height="71dp" />
         <Button
             android:id="@+id/restart"
-            android:layout_width="match_parent"
+            android:background="@mipmap/restart"
+            android:layout_width="71dp"
+            android:layout_height="71dp" />
+        <Space
+            android:id="@+id/space3"
+            android:layout_width="42dp"
+            android:layout_height="71dp" />
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="71dp"
+            android:background="@mipmap/mainmenu"
             android:layout_height="71dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_below="@id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/exit"
-            android:layout_width="match_parent"
-            android:layout_height="71dp" />
     </LinearLayout>
 
 </RelativeLayout>
+

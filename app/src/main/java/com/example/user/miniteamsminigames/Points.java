@@ -110,7 +110,7 @@ public class Points extends View {
         }
         if (state == State.LOSE) {
             Paint text = new Paint();
-            text.setColor(Color.BLUE);
+            text.setColor(Color.RED);
             text.setTextAlign(Paint.Align.CENTER);
             text.setTextSize(w / 6);
             canvas.drawText("Score: " + score, w / 2, h / 2, text);

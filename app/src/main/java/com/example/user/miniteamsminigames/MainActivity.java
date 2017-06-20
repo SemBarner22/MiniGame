@@ -1,10 +1,12 @@
 package com.example.user.miniteamsminigames;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/PRICEDOW.TTF");
         Button start = (Button)findViewById(R.id.start);
+        start.setTypeface(tf);
         start.setText("Start Game");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         };
         start.setOnClickListener(listenerStart);
         Button options = (Button)findViewById(R.id.options);
+        options.setTypeface(tf);
         options.setText("Options");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         options.setOnClickListener(listenerOptions);
         options.setOnClickListener(listenerOptions);
         Button exit = (Button)findViewById(R.id.exit);
+        exit.setTypeface(tf);
         exit.setText("Exit");
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override

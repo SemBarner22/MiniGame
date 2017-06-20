@@ -24,6 +24,8 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/start"
+            style="@android:style/TextAppearance.Large"
+            android:textSize="30dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>
@@ -37,6 +39,8 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/options"
+            style="@android:style/TextAppearance.Large"
+            android:textSize="30dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>
@@ -48,6 +52,8 @@
         <Button
             android:background="@mipmap/button"
             android:id="@+id/exit"
+            style="@android:style/TextAppearance.Large"
+            android:textSize="30dp"
             android:layout_width="200dp"
             android:layout_height="100dp" />
     </LinearLayout>

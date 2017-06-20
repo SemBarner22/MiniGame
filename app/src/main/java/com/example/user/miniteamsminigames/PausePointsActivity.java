@@ -13,7 +13,7 @@ public class PausePointsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pointspause);
         Button start = (Button)findViewById(R.id.resume);
-        start.setText("Resume");
+        //start.setText("esume");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,7 +22,7 @@ public class PausePointsActivity extends AppCompatActivity {
         };
         start.setOnClickListener(listenerStart);
         Button options = (Button)findViewById(R.id.restart);
-        options.setText("Restart");
+        //options.setText("restart");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +35,7 @@ public class PausePointsActivity extends AppCompatActivity {
         options.setOnClickListener(listenerOptions);
         options.setOnClickListener(listenerOptions);
         Button exit = (Button)findViewById(R.id.exit);
-        exit.setText("Main menu");
+        //exit.setText("Main menu");
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
