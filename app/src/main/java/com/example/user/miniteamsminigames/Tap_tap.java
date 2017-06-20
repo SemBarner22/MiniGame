@@ -26,8 +26,10 @@ public class Tap_tap extends View{
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    int V = 5;
-    int point = 10;
+    double V = 5;
+    int point = 0;
+    double score = 0;
+    double dt = 0.01;
     boolean ans = false;
     boolean lr = false; // left - false, right - true
 
@@ -62,6 +64,7 @@ public class Tap_tap extends View{
         w = getMeasuredWidth();
         h = getMeasuredHeight();
         d = getMeasuredWidth() / 6;
+        point = d / 8;
         if (!ans) {
             restart();
             ans = true;
@@ -126,15 +129,26 @@ public class Tap_tap extends View{
                 squares.add(new Square(s.x, s.y - random + d, d, random, bg2, !s.dir));
             }
         }
+
         if (state == State.LOSE) {
-            canvas.rotate(-45);
-            canvas.translate(- w / 2, - 3 * h / 4);
-            Paint text = new Paint();
-            text.setColor(Color.BLUE);
-            text.setTextAlign(Paint.Align.CENTER);
-            text.setTextSize(w / 6);
             V = 0;
-            canvas.drawText("Score: ", w / 2, h / 2, text);
+        }
+
+        if (state == State.NOT_LOSE) {
+            score += dt;
+//            V += dt / 10000000;
+        }
+        canvas.rotate(-45);
+        canvas.translate(- w / 2, - 3 * h / 4);
+        Paint text = new Paint();
+        text.setColor(Color.BLUE);
+        text.setTextAlign(Paint.Align.CENTER);
+        text.setTextSize(w / 6);
+        if ((int) (score * 100) % 100 >= 10) {
+            canvas.drawText("Score: " + (int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 2, text);
+        } else {
+            canvas.drawText("Score: " + (int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 2, text);
+
         }
         invalidate();
     }
