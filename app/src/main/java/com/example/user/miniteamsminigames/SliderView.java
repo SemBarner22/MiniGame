@@ -1,5 +1,6 @@
 package com.example.user.miniteamsminigames;
 
+import android.animation.ArgbEvaluator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -27,8 +28,7 @@ public class SliderView extends View {
     int deltaw = 0;
     int x = 65280;
     State state;
-    int clock = 200;
-    float clock = 150;
+    float clock = 200;
     boolean flag = false;
     Paint col = new Paint();
     ArrayList<State> states = new ArrayList<>();
