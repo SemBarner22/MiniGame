@@ -16,9 +16,17 @@ public class PointsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PointsActivity.this, PausePointsActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         };
         pause.setOnClickListener(listener);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            finish();
+        }
     }
 }
