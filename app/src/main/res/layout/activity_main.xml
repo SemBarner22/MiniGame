@@ -20,11 +20,11 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/start"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout1"
@@ -33,22 +33,22 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/options"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_below="@id/layout1"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/exit"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
 
 </RelativeLayout>

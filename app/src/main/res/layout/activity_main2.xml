@@ -20,11 +20,11 @@
         android:gravity="center"
         android:layout_marginBottom="50dp"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/btns"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout1"
@@ -33,15 +33,11 @@
         android:gravity="center"
         android:layout_marginBottom="50dp"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/btnslide"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
-            android:text="Start Game"
-            android:src="@mipmap/button"
-            android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout2"
@@ -50,22 +46,22 @@
         android:gravity="center"
         android:layout_marginBottom="50dp"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/piano"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_below="@id/layout2"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content">
-        <ImageButton
+        <Button
+            android:background="@mipmap/button"
             android:id="@+id/tap_tap"
-            android:src="@mipmap/button"
             android:layout_width="200dp"
-            android:layout_height="71dp" />
+            android:layout_height="100dp" />
     </LinearLayout>
 
 </RelativeLayout>
