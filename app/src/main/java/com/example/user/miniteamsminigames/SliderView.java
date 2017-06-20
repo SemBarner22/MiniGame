@@ -114,6 +114,7 @@ public class SliderView extends View {
             if (timer == 0 && !flag) {
                 state = State.LOSE;
             }
+
             if (timer == 0 && state != State.LOSE && flag) {
                 flag = false;
                 if (clock > 75) {
