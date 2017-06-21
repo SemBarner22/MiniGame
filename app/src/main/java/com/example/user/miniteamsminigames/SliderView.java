@@ -23,14 +23,15 @@ public class SliderView extends View {
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
     private static final Paint text = new Paint();
+    private static final Paint scorecolor = new Paint();
     public int w, h;
     float timer = 0;
-    int deltaw = 0;
-    int x = 65280;
     State state;
+    int score = 0;
     float clock = 200;
     boolean flag = false;
     Paint col = new Paint();
+    Paint colbg = new Paint();
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
     static final int MIN_DISTANCE = 150;
@@ -85,8 +86,7 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);
-        canvas.drawText(" " + (200 - clock), w / 2, 7 * h / 8, Timer);
+        //canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);
         if (state == State.S_D) {
             canvas.drawText("Down", w / 2, h / 2, text);
         }
@@ -117,7 +117,7 @@ public class SliderView extends View {
         if (state == State.NN) {
             canvas.drawText("Not Nothing", w / 2, h / 2, text);
         }
-        if (state == State.LOSE) {
+        if (state == State.SPECIAL) {
             Random rnd = new Random();
             int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
             view.setColor(color);
@@ -135,27 +135,41 @@ public class SliderView extends View {
             }
             postInvalidateDelayed(1);
         }
-            if (timer == 0 && !flag) {
-                if (state == State.N) {
-                    state = states.get((int) (Math.random() * 10));
-                    flag = true;
-                } else {
-                    state = State.LOSE;
-                }
+        if (timer == 0 && !flag) {
+            if (state == State.N) {
+                state = states.get((int) (Math.random() * 10));
+                flag = true;
+                score++;
+            } else {
+                state = State.LOSE;
             }
-            if (timer == 0 && state != State.LOSE && flag) {
-                flag = false;
-                if (clock > 75) {
-                    clock--;
-                }
-                timer = clock;
+        }
+        if (timer == 0 && state != State.LOSE && flag) {
+            flag = false;
+            if (clock > 75) {
+                clock--;
             }
+            timer = clock;
+        }
 
         ArgbEvaluator argbEvaluator = new ArgbEvaluator();
         Integer evaluatedColor = (Integer) argbEvaluator.evaluate(1 - timer / clock, Color.GREEN, Color.RED);
         col.setColor(evaluatedColor);
-        canvas.drawRect(w / 8, h / 6, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8), h / 3, col);
+        colbg.setColor(Color.BLACK);
+        if (state != State.LOSE) {
+            canvas.drawRect(w / 8 - 5, 3 * h / 4 - 5, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8) + 5, 5 * h / 6 + 5, colbg);
+        }
+        canvas.drawRect(w / 8, 3 * h / 4, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8), 5 * h / 6, col);
         timer--;
+        scorecolor.setColor(Color.RED);
+        scorecolor.setTextAlign(Paint.Align.CENTER);
+        if (state != State.LOSE) {
+            scorecolor.setTextSize(w / 6);
+            canvas.drawText(Integer.toString(score), w / 2, h / 8, scorecolor);
+        } else {
+            scorecolor.setTextSize(w / 3);
+            canvas.drawText(Integer.toString(score), w / 2, h / 2, scorecolor);
+        }
         invalidate();
     }
 
@@ -180,10 +194,9 @@ public class SliderView extends View {
                     if (state == State.S_L || state == State.S_D || state == State.S_U || state == State.NS_R || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
-                    }
-                    else
-                        if (state != State.LOSE){
+                    } else if (state != State.LOSE) {
                         state = states.get((int) (Math.random() * 10));
+                        score++;
                     }
                     //    while (state == State.S_R)
                     //        state = states.get((int) (Math.random() * 8));
@@ -196,10 +209,9 @@ public class SliderView extends View {
                     if (state == State.S_R || state == State.S_D || state == State.S_U || state == State.NS_L || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
-                    }
-                    else
-                    if (state != State.LOSE){
+                    } else if (state != State.LOSE) {
                         state = states.get((int) (Math.random() * 10));
+                        score++;
                     }
                     //else {
                     //    while (state == State.S_L)
@@ -211,10 +223,9 @@ public class SliderView extends View {
                     if (state == State.S_R || state == State.S_L || state == State.S_U || state == State.NS_D || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
-                    }
-                    else
-                    if (state != State.LOSE) {
+                    } else if (state != State.LOSE) {
                         state = states.get((int) (Math.random() * 10));
+                        score++;
                     }
                     //else {
                     //    while (state == State.S_D)
@@ -227,9 +238,9 @@ public class SliderView extends View {
                     if (state == State.S_R || state == State.S_D || state == State.S_L || state == State.NS_U || state == State.N) {
                         state = State.LOSE;
                         //text.setColor(Color.GREEN);
-                    } else
-                        if (state != State.LOSE){
-                            state = states.get((int) (Math.random() * 10));
+                    } else if (state != State.LOSE) {
+                        state = states.get((int) (Math.random() * 10));
+                        score++;
                     }
                     //else {
                     //    while (state == State.S_U)
