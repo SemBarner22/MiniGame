@@ -14,7 +14,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import static com.example.user.miniteamsminigames.PointsActivity.tf;
+import static com.example.user.miniteamsminigames.MainActivity.tf;
 
 /**
  * Created by User on 17.06.2017.

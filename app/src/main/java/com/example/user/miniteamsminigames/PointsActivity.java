@@ -11,9 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import static com.example.user.miniteamsminigames.MainActivity.tf;
+
 public class PointsActivity extends AppCompatActivity {
     public static Button tv;
-    public static Typeface tf;
     public static MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

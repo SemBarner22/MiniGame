@@ -14,7 +14,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
-import static com.example.user.miniteamsminigames.PointsActivity.tf;
+import static com.example.user.miniteamsminigames.MainActivity.tf;
 
 public class Points extends View {
     private static final Paint bg = new Paint();
