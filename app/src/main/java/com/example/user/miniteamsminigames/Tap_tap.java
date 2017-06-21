@@ -26,7 +26,7 @@ public class Tap_tap extends View{
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    double V = 3;
+    double V = 6;
     int point = 0;
     double score = 0;
     double dt = 0.01;
@@ -73,7 +73,7 @@ public class Tap_tap extends View{
     }
 
     private void restart() {
-        int random = (int) (Math.random() * w / 2 + w / 2);
+        int random = (int) (Math.random() * w + w / 4);
 //        int random = 200;
         Log.d("KEK111", Integer.toString(random));
         squares.add(new Square(- d / 2, - random + d / 2, d, random, bg2, true));

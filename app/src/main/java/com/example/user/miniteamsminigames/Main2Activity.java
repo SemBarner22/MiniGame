@@ -25,6 +25,7 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
+
         btns.setOnClickListener(listenerStart);
         Button btnslide = (Button)findViewById(R.id.btnslide);
         btnslide.setTypeface(tf);
