@@ -81,6 +81,7 @@ public class Tap_tap extends View {
     }
 
     public void restart() {
+        score = 0;
         tap_music.start();
         lr = false;
         squares = new ArrayList<>();
