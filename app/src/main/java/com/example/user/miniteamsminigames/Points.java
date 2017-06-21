@@ -20,6 +20,7 @@ public class Points extends View {
     private static final Paint bg1 = new Paint();
     private static final Paint black = new Paint();
     private static final Paint white = new Paint();
+    boolean flag = true;
     private ArrayList<Square> squares;
     private ArrayList<Square> squares2;
     private ArrayList<Square> whiteSquares;
@@ -128,8 +129,11 @@ public class Points extends View {
             PointsActivity.tv.setText(" " + score);
            // canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
-            mediaPlayer.setLooping(false);
-            mediaPlayer.start();
+            if (flag)  {
+                mediaPlayer.setLooping(false);
+                mediaPlayer.start();
+                flag = false;
+             }
             PointsActivity.tv.setVisibility(View.INVISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
