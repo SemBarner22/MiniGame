@@ -4,14 +4,31 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class TapActivity extends AppCompatActivity {
+    public static Button tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tap);
+        tv = (Button) findViewById(R.id.tv);
+        View.OnClickListener list = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Tap_tap p = (Tap_tap) findViewById(R.id.tap_tap);
+                p.restart();
+//                finish();
+//                Intent intent = new Intent(PointsActivity.this, PointsActivity.class);
+//                startActivity(intent);
+            }
+        };
+        tv.setOnClickListener(list);
+        //tv.setTextColor(Color.RED);
+        //tv.setTypeface(tf);
+        tv.setVisibility(View.INVISIBLE);
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override

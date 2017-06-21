@@ -7,8 +7,24 @@
     tools:context="com.example.user.miniteamsminigames.TapActivity">
 
     <com.example.user.miniteamsminigames.Tap_tap
+        android:id="@+id/tap_tap"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <Button
+            android:background="@mipmap/restart"
+            android:id="@+id/tv"
+            style="@android:style/TextAppearance.Large"
+            android:textSize="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/pause"

@@ -24,8 +24,19 @@ public class PointsActivity extends AppCompatActivity {
                 "fonts/PRICEDOW.TTF");
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         tv = (Button) findViewById(R.id.tv);
-        tv.setTextColor(Color.RED);
-        tv.setTypeface(tf);
+        View.OnClickListener list = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Points p = (Points) findViewById(R.id.points);
+                p.restart();
+//                finish();
+//                Intent intent = new Intent(PointsActivity.this, PointsActivity.class);
+//                startActivity(intent);
+            }
+        };
+        tv.setOnClickListener(list);
+        //tv.setTextColor(Color.RED);
+        //tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
