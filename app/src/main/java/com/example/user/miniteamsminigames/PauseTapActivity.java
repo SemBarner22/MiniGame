@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.user.miniteamsminigames.TapActivity.tap_music;
+
 public class PauseTapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tappause);
+        tap_music.pause();
         Button start = (Button)findViewById(R.id.resume);
         //start.setText("resume");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tap_music.start();
                 finish();
             }
         };

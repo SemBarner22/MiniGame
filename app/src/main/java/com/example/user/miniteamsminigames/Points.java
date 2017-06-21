@@ -14,6 +14,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
 
 public class Points extends View {
@@ -134,6 +135,7 @@ public class Points extends View {
             canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
             if (flag)  {
+                music_in_game.stop();
                 mediaPlayer.setLooping(false);
                 mediaPlayer.start();
                 flag = false;

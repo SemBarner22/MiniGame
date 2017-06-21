@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.user.miniteamsminigames.SliderAct.phon;
+
 public class PauseSliderActivity extends AppCompatActivity {
 
     @Override
@@ -13,10 +15,12 @@ public class PauseSliderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sliderpause);
         Button start = (Button)findViewById(R.id.resume);
+        phon.pause();
         //start.setText("resume");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phon.start();
                 finish();
             }
         };

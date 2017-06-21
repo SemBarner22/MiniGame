@@ -29,6 +29,7 @@ public class PointsActivity extends AppCompatActivity {
 
     public static Typeface tf;
     public static MediaPlayer mediaPlayer;
+    public static MediaPlayer music_in_game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,9 @@ public class PointsActivity extends AppCompatActivity {
         tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
-        tv = (Butzton) findViewById(R.id.tv);
+        music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
+        music_in_game.start();
+        tv = (Button) findViewById(R.id.tv);
         tv.setTextColor(Color.RED);
         tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);

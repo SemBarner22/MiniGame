@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,7 +15,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
+import static com.example.user.miniteamsminigames.TapActivity.loser;
+import static com.example.user.miniteamsminigames.TapActivity.tap_music;
 
 /**
  * Created by User on 17.06.2017.
@@ -23,8 +28,10 @@ import static com.example.user.miniteamsminigames.PointsActivity.tf;
 public class Tap_tap extends View{
     public ArrayList<Square> squares = new ArrayList<>();
     State state = State.NOT_LOSE;
+    boolean flag = true;
     private static final Paint bg = new Paint();
     private static final Paint bg2 = new Paint();
+
     private static final Paint red = new Paint();
     int vx, vy, r;
     int w, h, d;
@@ -98,12 +105,12 @@ public class Tap_tap extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0, 0, w, h, bg);
-        canvas.translate(w / 2, 2 * h / 3);
+        canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         boolean kek = false;
         for (Square s : squares) {
-            if ((s.x + point) * (s.x + s.w + point) <= 0 && (s.y + point) * (s.y + s.h + point) <= 0 &&
-                    (s.x - point) * (s.x + s.w - point) <= 0 && (s.y - point) * (s.y + s.h - point) <= 0) {
+            if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
+                    (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {
                 kek = true;
             }
         }
@@ -122,7 +129,7 @@ public class Tap_tap extends View{
                 sq.x += V;
             }
         }
-        canvas.drawRect(-point, -point, 2 * point, 2 * point, red);
+        canvas.drawRect(-point, -point, 2 * point, 2 * point, bg);
         Square firstsquare = squares.get(0);
         if (firstsquare.y > h / 2) {
             squares.remove(0);
@@ -151,7 +158,7 @@ public class Tap_tap extends View{
             }
         }
         canvas.rotate(-45);
-        canvas.translate(- w / 2, - 2 * h / 3);
+        canvas.translate(- w / 2, - 3 * h / 4);
         Paint text = new Paint();
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);
@@ -165,6 +172,12 @@ public class Tap_tap extends View{
 
             }
         } else {
+            if (flag)  {
+                tap_music.stop();
+                loser.setLooping(false);
+                loser.start();
+                flag = false;
+            }
             text.setTextSize(w / 3);
             if ((int) (score * 100) % 100 >= 10) {
                 canvas.drawText((int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 2, text);
