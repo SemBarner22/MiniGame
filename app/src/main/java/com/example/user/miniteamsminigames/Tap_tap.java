@@ -26,7 +26,7 @@ public class Tap_tap extends View{
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    double V = 3;
+    double V = 6;
     int point = 0;
     double score = 0;
     double dt = 0.01;
