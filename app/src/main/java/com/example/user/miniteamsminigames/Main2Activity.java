@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.user.miniteamsminigames.MainActivity.tf;
+
 public class Main2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Typeface tf = Typeface.createFromAsset(getAssets(),
-                "fonts/PRICEDOW.TTF");
         Button btns = (Button)findViewById(R.id.btns);
         btns.setTypeface(tf);
         btns.setText("Button Click");

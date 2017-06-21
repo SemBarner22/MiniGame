@@ -28,11 +28,14 @@
         <activity android:name=".SliderAct"
             android:screenOrientation="portrait"/>
         <activity android:name=".PausePointsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"/>
         <activity android:name=".PauseTapActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"/>
         <activity android:name=".PauseSliderActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"/>
     </application>
 
 </manifest>

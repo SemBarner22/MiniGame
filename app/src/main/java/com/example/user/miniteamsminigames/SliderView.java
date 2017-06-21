@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static android.graphics.Color.BLACK;
-import static com.example.user.miniteamsminigames.PointsActivity.tf;
 import static com.example.user.miniteamsminigames.SliderAct.lose_music;
 import static com.example.user.miniteamsminigames.SliderAct.phon;
 import static com.example.user.miniteamsminigames.MainActivity.tf;

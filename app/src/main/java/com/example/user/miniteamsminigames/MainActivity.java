@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import static android.R.attr.process;
 
 public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
@@ -23,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lol);
+        //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lol);
         //mediaPlayer.start();
         Button start = (Button)findViewById(R.id.start);
         start.setTypeface(tf);

@@ -29,15 +29,12 @@ public class PointsActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public static Typeface tf;
     public static MediaPlayer mediaPlayer;
     public static MediaPlayer music_in_game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points);
-        tf = Typeface.createFromAsset(getAssets(),
-                "fonts/PRICEDOW.TTF");
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
         music_in_game.start();

@@ -13,11 +13,10 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
+import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
 import static com.example.user.miniteamsminigames.PointsActivity.tv;
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
-import static com.example.user.miniteamsminigames.PointsActivity.tf;
 
 public class Points extends View {
     private static final Paint bg = new Paint();

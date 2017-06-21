@@ -15,9 +15,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
-import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
-import static com.example.user.miniteamsminigames.PointsActivity.tf;
 import static com.example.user.miniteamsminigames.TapActivity.loser;
 import static com.example.user.miniteamsminigames.TapActivity.tap_music;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
@@ -137,7 +134,7 @@ public class Tap_tap extends View{
                 sq.x += V;
             }
         }
-        canvas.drawRect(-point, -point, 2 * point, 2 * point, bg);
+        canvas.drawRect(-point, -point, 2 * point, 2 * point, red);
         Square firstsquare = squares.get(0);
         if (firstsquare.y > h / 2) {
             squares.remove(0);
