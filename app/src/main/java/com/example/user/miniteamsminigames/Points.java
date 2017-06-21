@@ -14,6 +14,8 @@ import android.view.View;
 import java.util.ArrayList;
 
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.MainActivity.tf;
+import static com.example.user.miniteamsminigames.PointsActivity.tv;
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
 
@@ -99,7 +101,7 @@ public class Points extends View {
         if (diff > 0) {
             int random = (int) (Math.random() * 4);
             squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black, false));
-            squares2.add(new Square(random * w / 4, diff - h / 4, w / 4, h / 4, white, false));
+            squares2.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4, white, false));
         }
         for (Square s : whiteSquares) {
             s.draw(canvas);
@@ -140,7 +142,7 @@ public class Points extends View {
                 mediaPlayer.start();
                 flag = false;
              }
-            PointsActivity.tv.setVisibility(View.INVISIBLE);
+            PointsActivity.tv.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
         }
@@ -168,6 +170,16 @@ public class Points extends View {
     }
 
     public void restart() {
+        state = State.NOT_LOSE;
+        tv.setVisibility(INVISIBLE);
+        bg.setColor(Color.BLACK);
+        bg1.setColor(Color.BLACK);
+        black.setColor(Color.BLACK);
+        white.setColor(Color.WHITE);
+        squares = new ArrayList<>();
+        squares2 = new ArrayList<>();
+        whiteSquares = new ArrayList<>();
+        V = 10;
         int random = (int) (Math.random() * 4);
         squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
         for (int i = 4; i >= -1; i--) {

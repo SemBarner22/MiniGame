@@ -14,13 +14,14 @@ import static android.R.attr.process;
 public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     public MediaPlayer phone_music;
+    public static Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
         phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Typeface tf = Typeface.createFromAsset(getAssets(),
+        tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lol);
         //mediaPlayer.start();

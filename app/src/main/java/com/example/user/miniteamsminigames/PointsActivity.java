@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import static com.example.user.miniteamsminigames.MainActivity.tf;
+
 public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
@@ -40,8 +42,19 @@ public class PointsActivity extends AppCompatActivity {
         music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
         music_in_game.start();
         tv = (Button) findViewById(R.id.tv);
-        tv.setTextColor(Color.RED);
-        tv.setTypeface(tf);
+        View.OnClickListener list = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Points p = (Points) findViewById(R.id.points);
+                p.restart();
+//                finish();
+//                Intent intent = new Intent(PointsActivity.this, PointsActivity.class);
+//                startActivity(intent);
+            }
+        };
+        tv.setOnClickListener(list);
+        //tv.setTextColor(Color.RED);
+        //tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {

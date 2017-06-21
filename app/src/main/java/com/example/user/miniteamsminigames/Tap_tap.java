@@ -20,6 +20,7 @@ import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
 import static com.example.user.miniteamsminigames.TapActivity.loser;
 import static com.example.user.miniteamsminigames.TapActivity.tap_music;
+import static com.example.user.miniteamsminigames.MainActivity.tf;
 
 /**
  * Created by User on 17.06.2017.
@@ -83,7 +84,14 @@ public class Tap_tap extends View{
         }
     }
 
-    private void restart() {
+    public void restart() {
+        lr = false;
+        squares = new ArrayList<>();
+        state = State.NOT_LOSE;
+        V = 6;
+        bg.setColor(Color.BLACK);
+        bg2.setColor(Color.WHITE);
+        red.setColor(Color.RED);
         int random = (int) (Math.random() * w + w / 4);
 //        int random = 200;
         Log.d("KEK111", Integer.toString(random));
@@ -145,9 +153,11 @@ public class Tap_tap extends View{
 
         if (state == State.LOSE) {
             V = 0;
+            TapActivity.tv.setVisibility(VISIBLE);
         }
 
         if (state == State.NOT_LOSE) {
+            TapActivity.tv.setVisibility(INVISIBLE);
             score += dt;
             if (cnt > 10) {
                 V += 1;
