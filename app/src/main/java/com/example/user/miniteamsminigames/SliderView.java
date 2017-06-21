@@ -155,7 +155,10 @@ public class SliderView extends View {
             }
             timer = clock;
         }
-
+        if (state == State.LOSE || state == State.PAUSED) {
+            SliderAct.pause.setVisibility(INVISIBLE);
+        } else
+            SliderAct.pause.setVisibility(VISIBLE);
         ArgbEvaluator argbEvaluator = new ArgbEvaluator();
         Integer evaluatedColor = (Integer) argbEvaluator.evaluate(1 - timer / clock, Color.GREEN, Color.RED);
         col.setColor(evaluatedColor);
@@ -267,6 +270,7 @@ public class SliderView extends View {
     }
 
     public void restart() {
+        phon.start();
         text.setTextSize(w / 6);
         Timer.setTextSize(w / 6);
         state = states.get((int) (Math.random() * 10));

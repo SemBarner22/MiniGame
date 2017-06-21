@@ -129,6 +129,7 @@ public class Points extends View {
         text.setTextAlign(Paint.Align.CENTER);
         text.setTypeface(tf);
         if (state == State.NOT_LOSE) {
+            PointsActivity.pause.setVisibility(VISIBLE);
             text.setTextSize(w / 6);
             // шрифтик
            // PointsActivity.tv.setVisibility(View.VISIBLE);
@@ -141,6 +142,7 @@ public class Points extends View {
                 mediaPlayer.start();
                 flag = false;
              }
+            PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
@@ -169,6 +171,8 @@ public class Points extends View {
     }
 
     public void restart() {
+        flag = true;
+        music_in_game.start();
         state = State.NOT_LOSE;
         tv.setVisibility(INVISIBLE);
         bg.setColor(Color.BLACK);

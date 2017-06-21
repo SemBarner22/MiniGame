@@ -23,18 +23,17 @@ import static com.example.user.miniteamsminigames.MainActivity.tf;
  * Created by User on 17.06.2017.
  */
 
-public class Tap_tap extends View{
+public class Tap_tap extends View {
     public ArrayList<Square> squares = new ArrayList<>();
-    State state = State.NOT_LOSE;
+    public static State state = State.NOT_LOSE;
     boolean flag = true;
     private static final Paint bg = new Paint();
     private static final Paint bg2 = new Paint();
-
     private static final Paint red = new Paint();
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
-    double V = 6;
+    public static double V = 6;
     int point = 0;
     double score = 0;
     double dt = 0.01;
@@ -82,6 +81,7 @@ public class Tap_tap extends View{
     }
 
     public void restart() {
+        tap_music.start();
         lr = false;
         squares = new ArrayList<>();
         state = State.NOT_LOSE;
@@ -92,7 +92,7 @@ public class Tap_tap extends View{
         int random = (int) (Math.random() * w + w / 4);
 //        int random = 200;
         Log.d("KEK111", Integer.toString(random));
-        squares.add(new Square(- d / 2, - random + d / 2, d, random, bg2, true));
+        squares.add(new Square(-d / 2, -random + d / 2, d, random, bg2, true));
         for (int i = 0; i < 20; i++) {
             random = (int) (Math.random() * w / 2 + w / 2);
 //            random = 200;
@@ -147,13 +147,18 @@ public class Tap_tap extends View{
                 squares.add(new Square(s.x, s.y - random + d, d, random, bg2, !s.dir));
             }
         }
-
+        if (state == State.PAUSED) {
+            TapActivity.pause.setVisibility(INVISIBLE);
+            V = 0;
+        }
         if (state == State.LOSE) {
             V = 0;
             TapActivity.tv.setVisibility(VISIBLE);
+            TapActivity.pause.setVisibility(INVISIBLE);
         }
 
         if (state == State.NOT_LOSE) {
+            TapActivity.pause.setVisibility(VISIBLE);
             TapActivity.tv.setVisibility(INVISIBLE);
             score += dt;
             if (cnt > 10) {
@@ -165,7 +170,7 @@ public class Tap_tap extends View{
             }
         }
         canvas.rotate(-45);
-        canvas.translate(- w / 2, - 3 * h / 4);
+        canvas.translate(-w / 2, -3 * h / 4);
         Paint text = new Paint();
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);
@@ -178,8 +183,8 @@ public class Tap_tap extends View{
                 canvas.drawText((int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 8, text);
 
             }
-        } else {
-            if (flag)  {
+        } else if (state == State.LOSE) {
+            if (flag) {
                 tap_music.stop();
                 loser.setLooping(false);
                 loser.start();
@@ -195,6 +200,7 @@ public class Tap_tap extends View{
         }
         invalidate();
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

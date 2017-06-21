@@ -11,14 +11,29 @@ import android.widget.ImageButton;
 public class TapActivity extends AppCompatActivity {
     public static MediaPlayer tap_music;
     public static MediaPlayer loser;
+    public static ImageButton pause;
     public static Button tv;
+    public static double rememV;
+
+    @Override
+    protected void onPause() {
+        Tap_tap.state = State.PAUSED;
+        TapActivity.rememV = Tap_tap.V;
+        super.onPause();
+    }
+
+    @Override
+    protected void onPostResume() {
+        Tap_tap.V = rememV;
+        Tap_tap.state = State.NOT_LOSE;
+        super.onPostResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tap_music = MediaPlayer.create(getApplicationContext(), R.raw.taptap);
         loser = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
-        tap_music.start();
         setContentView(R.layout.activity_tap);
         tv = (Button) findViewById(R.id.tv);
         View.OnClickListener list = new View.OnClickListener() {
@@ -35,7 +50,7 @@ public class TapActivity extends AppCompatActivity {
         //tv.setTextColor(Color.RED);
         //tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);
-        ImageButton pause = (ImageButton) findViewById(R.id.pause);
+        pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

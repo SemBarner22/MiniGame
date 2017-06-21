@@ -19,11 +19,13 @@ public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
     public int rememberk;
+    public static ImageButton pause;
 
     @Override
     protected void onPause() {
         rememberk = Points.k;
         rememberV = Points.V;
+        pause.setVisibility(View.INVISIBLE);
         Points.V = 0;
         Points.k = 0;
         super.onPause();
@@ -37,7 +39,6 @@ public class PointsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_points);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
-        music_in_game.start();
         tv = (Button) findViewById(R.id.tv);
         View.OnClickListener list = new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class PointsActivity extends AppCompatActivity {
         //tv.setTextColor(Color.RED);
         //tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);
-        ImageButton pause = (ImageButton) findViewById(R.id.pause);
+        pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +78,7 @@ public class PointsActivity extends AppCompatActivity {
     protected void onPostResume() {
         Points.k = rememberk;
         Points.V = rememberV;
+        pause.setVisibility(View.VISIBLE);
         super.onPostResume();
     }
 }

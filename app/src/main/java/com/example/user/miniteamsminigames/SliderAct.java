@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 
 public class SliderAct extends AppCompatActivity {
-    ImageButton pause;
+    public static ImageButton pause;
     public static State st;
 
     @Override
@@ -34,7 +34,6 @@ public class SliderAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         lose_music = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         phon = MediaPlayer.create(getApplicationContext(), R.raw.slidermusic);
-        phon.start();
         setContentView(R.layout.activity_slide);
         pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
