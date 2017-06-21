@@ -14,6 +14,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.PointsActivity.tf;
 
 public class Points extends View {
     private static final Paint bg = new Paint();
@@ -122,12 +123,13 @@ public class Points extends View {
         Paint text = new Paint();
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);
+        text.setTypeface(tf);
         if (state == State.NOT_LOSE) {
             text.setTextSize(w / 6);
             // шрифтик
-            PointsActivity.tv.setVisibility(View.VISIBLE);
-            PointsActivity.tv.setText(" " + score);
-           // canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
+           // PointsActivity.tv.setVisibility(View.VISIBLE);
+           // PointsActivity.tv.setText(" " + score);
+            canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
             if (flag)  {
                 mediaPlayer.setLooping(false);

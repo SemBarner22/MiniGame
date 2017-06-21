@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static android.graphics.Color.BLACK;
+import static com.example.user.miniteamsminigames.PointsActivity.tf;
 
 
 public class SliderView extends View {
@@ -86,6 +87,7 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        text.setTypeface(tf);
         //canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);
         if (state == State.S_D) {
             canvas.drawText("Down", w / 2, h / 2, text);
@@ -163,6 +165,7 @@ public class SliderView extends View {
         timer--;
         scorecolor.setColor(Color.RED);
         scorecolor.setTextAlign(Paint.Align.CENTER);
+        scorecolor.setTypeface(tf);
         if (state != State.LOSE) {
             scorecolor.setTextSize(w / 6);
             canvas.drawText(Integer.toString(score), w / 2, h / 8, scorecolor);

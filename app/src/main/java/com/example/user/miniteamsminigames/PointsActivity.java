@@ -13,19 +13,19 @@ import android.widget.TextView;
 
 public class PointsActivity extends AppCompatActivity {
     public static Button tv;
+    public static Typeface tf;
     public static MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points);
-        Typeface tf = Typeface.createFromAsset(getAssets(),
+        tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         tv = (Button) findViewById(R.id.tv);
         tv.setTextColor(Color.RED);
         tv.setTypeface(tf);
-        //tv.setVisibility(View.INVISIBLE);
-        tv.setText("239");
+        tv.setVisibility(View.INVISIBLE);
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override

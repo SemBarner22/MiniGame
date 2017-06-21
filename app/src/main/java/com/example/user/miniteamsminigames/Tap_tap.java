@@ -14,6 +14,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.example.user.miniteamsminigames.PointsActivity.tf;
+
 /**
  * Created by User on 17.06.2017.
  */
@@ -152,6 +154,7 @@ public class Tap_tap extends View{
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);
         text.setTextSize(w / 6);
+        text.setTypeface(tf);
         if (state == State.NOT_LOSE) {
             if ((int) (score * 100) % 100 >= 10) {
                 canvas.drawText((int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 8, text);
