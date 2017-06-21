@@ -25,9 +25,10 @@ public class Points extends View {
     private ArrayList<Square> squares;
     private ArrayList<Square> squares2;
     private ArrayList<Square> whiteSquares;
-    public double V = 10;
+    public static double V;
     public int score = 0;
     public int w, h;
+    public static int k;
     public State state = State.NOT_LOSE;
     boolean ans = false;
     int intans = 0;
@@ -60,6 +61,7 @@ public class Points extends View {
         squares = new ArrayList<>();
         squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
+        V = 10;
     }
 
     @Override
@@ -172,6 +174,8 @@ public class Points extends View {
             }
         }
         score = 0;
+        k = 1;
+        V = 10;
         new MyTimer(3000L, 10).start();
     }
 
@@ -187,7 +191,7 @@ public class Points extends View {
         @Override
         public void onFinish() {
             if (state != State.LOSE) {
-                V += 1;
+                V += k;
                 new MyTimer(3000L, 10).start();
             }
         }
