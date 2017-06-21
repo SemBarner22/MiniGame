@@ -1,6 +1,7 @@
 package com.example.user.miniteamsminigames;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +9,14 @@ import android.widget.ImageButton;
 
 public class SliderAct extends AppCompatActivity {
 
+    public static MediaPlayer lose_music;
+    public static MediaPlayer phon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lose_music = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
+        phon = MediaPlayer.create(getApplicationContext(), R.raw.slidermusic);
+        phon.start();
         setContentView(R.layout.activity_slide);
         ImageButton pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {

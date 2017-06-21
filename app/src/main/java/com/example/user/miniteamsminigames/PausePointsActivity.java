@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
+
 public class PausePointsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pointspause);
+        music_in_game.pause();
         Button start = (Button)findViewById(R.id.resume);
         //start.setText("resume");
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                music_in_game.start();
                 finish();
             }
         };

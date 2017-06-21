@@ -17,6 +17,8 @@ import java.util.Random;
 
 import static android.graphics.Color.BLACK;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
+import static com.example.user.miniteamsminigames.SliderAct.lose_music;
+import static com.example.user.miniteamsminigames.SliderAct.phon;
 
 
 public class SliderView extends View {
@@ -25,6 +27,7 @@ public class SliderView extends View {
     private static final Paint Timer = new Paint();
     private static final Paint text = new Paint();
     private static final Paint scorecolor = new Paint();
+    boolean flag1 = true;
     public int w, h;
     float timer = 0;
     State state;
@@ -170,6 +173,12 @@ public class SliderView extends View {
             scorecolor.setTextSize(w / 6);
             canvas.drawText(Integer.toString(score), w / 2, h / 8, scorecolor);
         } else {
+            if (flag1)  {
+                phon.stop();
+                lose_music.setLooping(false);
+                lose_music.start();
+                flag1 = false;
+            }
             scorecolor.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, scorecolor);
         }

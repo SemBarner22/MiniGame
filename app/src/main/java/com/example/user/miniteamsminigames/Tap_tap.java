@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,7 +15,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 import static com.example.user.miniteamsminigames.PointsActivity.tf;
+import static com.example.user.miniteamsminigames.TapActivity.loser;
+import static com.example.user.miniteamsminigames.TapActivity.tap_music;
 
 /**
  * Created by User on 17.06.2017.
@@ -23,8 +28,10 @@ import static com.example.user.miniteamsminigames.PointsActivity.tf;
 public class Tap_tap extends View{
     public ArrayList<Square> squares = new ArrayList<>();
     State state = State.NOT_LOSE;
+    boolean flag = true;
     private static final Paint bg = new Paint();
     private static final Paint bg2 = new Paint();
+
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
@@ -163,6 +170,12 @@ public class Tap_tap extends View{
 
             }
         } else {
+            if (flag)  {
+                tap_music.stop();
+                loser.setLooping(false);
+                loser.start();
+                flag = false;
+            }
             text.setTextSize(w / 3);
             if ((int) (score * 100) % 100 >= 10) {
                 canvas.drawText((int) (score * 100) / 100 + "." + (int) (score * 100) % 100, w / 2, h / 2, text);

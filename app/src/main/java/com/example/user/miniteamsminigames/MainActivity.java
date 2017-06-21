@@ -13,8 +13,11 @@ import static android.R.attr.process;
 
 public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
+    public MediaPlayer phone_music;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
+        phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Typeface tf = Typeface.createFromAsset(getAssets(),
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phone_music.stop();
                 Button button = (Button) v;
                 Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(intent);
