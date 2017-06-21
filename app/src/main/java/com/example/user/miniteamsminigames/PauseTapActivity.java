@@ -41,8 +41,8 @@ public class PauseTapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 finish();
-                Intent intent = new Intent(PauseTapActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PauseTapActivity.this, MainActivity.class);
+                //startActivity(intent);
             }
         };
         exit.setOnClickListener(listenerExit);

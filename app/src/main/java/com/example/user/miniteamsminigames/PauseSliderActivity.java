@@ -40,8 +40,8 @@ public class PauseSliderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 finish();
-                Intent intent = new Intent(PauseSliderActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PauseSliderActivity.this, MainActivity.class);
+                //startActivity(intent);
             }
         };
         exit.setOnClickListener(listenerExit);

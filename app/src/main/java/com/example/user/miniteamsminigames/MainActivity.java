@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         options.setOnClickListener(listenerOptions);
-        options.setOnClickListener(listenerOptions);
         Button exit = (Button)findViewById(R.id.exit);
         exit.setTypeface(tf);
         exit.setText("Exit");

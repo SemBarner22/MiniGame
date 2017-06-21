@@ -21,7 +21,9 @@ public class ButtonsActivity extends Activity implements View.OnClickListener{
         gameWidgets = new LinearLayout(this);
         endGameButton = new Button(this);
         endGameButton.setWidth(300);
-        endGameButton.setText("Start Game");
+        //endGameButton.setText("Start Game");
+        endGameButton.setText("Main menu");
+        endGameButton.setVisibility(View.INVISIBLE);
         //gameWidgets.addView(endGameButton);
         endGameButton.setOnClickListener(this);
         game.addView(gameview);
@@ -32,8 +34,9 @@ public class ButtonsActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, Main2Activity.class);
-        startActivity(intent);
+        finish();
+        //Intent intent = new Intent(this, Main2Activity.class);
+        //startActivity(intent);
     }
 
 }
