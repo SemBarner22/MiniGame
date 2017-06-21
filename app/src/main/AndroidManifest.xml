@@ -9,21 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".ButtonsActivity" />
-        <activity android:name=".PointsActivity" />
-        <activity android:name=".TapActivity" />
-        <activity android:name=".SliderAct" />
-        <activity android:name=".PausePointsActivity" />
-        <activity android:name=".PauseTapActivity" />
-        <activity android:name=".PauseSliderActivity" />
+        <activity android:name=".Main2Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ButtonsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PointsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SliderAct"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PausePointsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PauseTapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PauseSliderActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
