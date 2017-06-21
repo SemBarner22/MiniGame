@@ -3,6 +3,7 @@ package com.example.user.miniteamsminigames;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +13,14 @@ import android.widget.TextView;
 
 public class PointsActivity extends AppCompatActivity {
     public static Button tv;
+    public static MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points);
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         tv = (Button) findViewById(R.id.tv);
         tv.setTextColor(Color.RED);
         tv.setTypeface(tf);

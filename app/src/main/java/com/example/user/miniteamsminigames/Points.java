@@ -13,6 +13,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+
 public class Points extends View {
     private static final Paint bg = new Paint();
     private static final Paint bg1 = new Paint();
@@ -126,6 +128,8 @@ public class Points extends View {
             PointsActivity.tv.setText(" " + score);
            // canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
+            mediaPlayer.setLooping(false);
+            mediaPlayer.start();
             PointsActivity.tv.setVisibility(View.INVISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
