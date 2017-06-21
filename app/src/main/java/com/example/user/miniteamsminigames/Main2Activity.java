@@ -29,18 +29,18 @@ public class Main2Activity extends AppCompatActivity {
         btns.setOnClickListener(listenerStart);
         Button btnslide = (Button)findViewById(R.id.btnslide);
         btnslide.setTypeface(tf);
-        btnslide.setText("Slider");
+        btnslide.setText("Tap Tap");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, SliderAct.class);
+                Intent intent = new Intent(Main2Activity.this, TapActivity.class);
                 startActivity(intent);
             }
         };
         btnslide.setOnClickListener(listenerOptions);
         Button piano = (Button)findViewById(R.id.piano);
         piano.setTypeface(tf);
-        piano.setText("Piano");
+        piano.setText("Piano Tiles");
         View.OnClickListener listenerExit = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,11 +51,11 @@ public class Main2Activity extends AppCompatActivity {
         piano.setOnClickListener(listenerExit);
         Button tap = (Button)findViewById(R.id.tap_tap);
         tap.setTypeface(tf);
-        tap.setText("Tap");
+        tap.setText("Slider");
         View.OnClickListener listenerStart1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, TapActivity.class);
+                Intent intent = new Intent(Main2Activity.this, SliderAct.class);
                 startActivity(intent);
             }
         };

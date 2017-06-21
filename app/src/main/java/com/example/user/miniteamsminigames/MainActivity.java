@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(listenerStart);
         Button options = (Button)findViewById(R.id.options);
         options.setTypeface(tf);
-        options.setText("Options");
+        options.setText("Records");
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,16 +45,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         options.setOnClickListener(listenerOptions);
-        Button exit = (Button)findViewById(R.id.exit);
-        exit.setTypeface(tf);
-        exit.setText("Exit");
-        View.OnClickListener listenerExit = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        };
-        exit.setOnClickListener(listenerExit);
-    }
 
+    }
 }

@@ -25,6 +25,7 @@ public class Tap_tap extends View{
     State state = State.NOT_LOSE;
     private static final Paint bg = new Paint();
     private static final Paint bg2 = new Paint();
+    private static final Paint red = new Paint();
     int vx, vy, r;
     int w, h, d;
     Tap_Player player;
@@ -59,6 +60,7 @@ public class Tap_tap extends View{
     private void init() {
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
+        red.setColor(Color.RED);
     }
 
     @Override
@@ -96,12 +98,12 @@ public class Tap_tap extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0, 0, w, h, bg);
-        canvas.translate(w / 2, 3 * h / 4);
+        canvas.translate(w / 2, 2 * h / 3);
         canvas.rotate(45);
         boolean kek = false;
         for (Square s : squares) {
-            if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
-                    (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {
+            if ((s.x + point) * (s.x + s.w + point) <= 0 && (s.y + point) * (s.y + s.h + point) <= 0 &&
+                    (s.x - point) * (s.x + s.w - point) <= 0 && (s.y - point) * (s.y + s.h - point) <= 0) {
                 kek = true;
             }
         }
@@ -120,7 +122,7 @@ public class Tap_tap extends View{
                 sq.x += V;
             }
         }
-        canvas.drawRect(-point, -point, 2 * point, 2 * point, bg);
+        canvas.drawRect(-point, -point, 2 * point, 2 * point, red);
         Square firstsquare = squares.get(0);
         if (firstsquare.y > h / 2) {
             squares.remove(0);
@@ -149,7 +151,7 @@ public class Tap_tap extends View{
             }
         }
         canvas.rotate(-45);
-        canvas.translate(- w / 2, - 3 * h / 4);
+        canvas.translate(- w / 2, - 2 * h / 3);
         Paint text = new Paint();
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);

@@ -24,8 +24,8 @@
             android:background="@mipmap/button"
             android:id="@+id/btns"
             android:textSize="25dp"
-            android:layout_width="200dp"
-            android:layout_height="100dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout1"
