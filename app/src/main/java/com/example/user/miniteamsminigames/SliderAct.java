@@ -43,7 +43,7 @@ public class SliderAct extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         };
-        pause.setOnClickListener(listener);
+         pause.setOnClickListener(listener);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

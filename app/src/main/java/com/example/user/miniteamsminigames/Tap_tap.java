@@ -2,6 +2,7 @@ package com.example.user.miniteamsminigames;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -24,6 +25,7 @@ import static com.example.user.miniteamsminigames.MainActivity.tf;
  */
 
 public class Tap_tap extends View {
+    public SharedPreferences.Editor tap_edit;
     public ArrayList<Square> squares = new ArrayList<>();
     public static State state = State.NOT_LOSE;
     boolean flag = true;
@@ -65,6 +67,7 @@ public class Tap_tap extends View {
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
         red.setColor(Color.RED);
+        tap_edit = RecordsActivity.tap_pref.edit();
     }
 
     @Override
@@ -114,6 +117,10 @@ public class Tap_tap extends View {
         canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         boolean kek = false;
+        if(score > RecordsActivity.tap_pref.getFloat("tap", 0)) {
+            tap_edit.putFloat("tap", (float) score);
+            tap_edit.commit();
+        }
         for (Square s : squares) {
             if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
                     (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {

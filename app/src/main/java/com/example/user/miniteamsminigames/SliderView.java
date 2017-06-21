@@ -2,6 +2,7 @@ package com.example.user.miniteamsminigames;
 
 import android.animation.ArgbEvaluator;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,6 +23,7 @@ import static com.example.user.miniteamsminigames.MainActivity.tf;
 
 
 public class SliderView extends View {
+    public SharedPreferences.Editor slide_edit;
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
     private static final Paint text = new Paint();
@@ -74,6 +76,7 @@ public class SliderView extends View {
         states.add(State.NS_R);
         states.add(State.N);
         states.add(State.NN);
+        slide_edit = RecordsActivity.slide_pref.edit();
         restart();
     }
 
@@ -89,6 +92,10 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(score > RecordsActivity.slide_pref.getInt("slide", 0)) {
+            slide_edit.putInt("slide", score);
+            slide_edit.commit();
+        }
         text.setTypeface(tf);
         //canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);
         if (state == State.S_D) {

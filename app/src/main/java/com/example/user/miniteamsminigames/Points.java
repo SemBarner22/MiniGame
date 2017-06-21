@@ -1,6 +1,7 @@
 package com.example.user.miniteamsminigames;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +20,7 @@ import static com.example.user.miniteamsminigames.PointsActivity.tv;
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 
 public class Points extends View {
+    public SharedPreferences.Editor piano_edit;
     private static final Paint bg = new Paint();
     private static final Paint bg1 = new Paint();
     private static final Paint black = new Paint();
@@ -63,6 +65,7 @@ public class Points extends View {
         squares = new ArrayList<>();
         squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
+        piano_edit = RecordsActivity.piano_pref.edit();
         V = 10;
     }
 
@@ -85,6 +88,10 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(score > RecordsActivity.piano_pref.getInt("piano", 0)) {
+            piano_edit.putInt("piano", score);
+            piano_edit.commit();
+        }
         Square ss = new Square(0, 0, w, h, bg1, false);
         ss.draw(canvas);
         ss = new Square(0, 0, w - 1, h, bg, false);
