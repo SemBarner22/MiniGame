@@ -3,6 +3,7 @@ package com.example.user.miniteamsminigames;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +24,7 @@ public class PausePointsActivity extends AppCompatActivity {
         start.setOnClickListener(listenerStart);
         Button options = (Button)findViewById(R.id.restart);
         //options.setText("restart");
+        Log.d("top", " " + 1);
         View.OnClickListener listenerOptions = new View.OnClickListener() {
             @Override
             public void onClick(View v) {

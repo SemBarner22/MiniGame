@@ -6,13 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+
 public class SliderAct extends AppCompatActivity {
+    ImageButton pause;
+    public static State st;
+
+    @Override
+    protected void onPause() {
+        st = SliderView.state;
+        SliderView.state = State.PAUSED;
+        pause.setVisibility(View.INVISIBLE);
+        super.onPause();
+    }
+
+    @Override
+    protected void onPostResume() {
+        SliderView.state = st;
+        pause.setVisibility(View.VISIBLE);
+        super.onPostResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide);
-        ImageButton pause = (ImageButton) findViewById(R.id.pause);
+        pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

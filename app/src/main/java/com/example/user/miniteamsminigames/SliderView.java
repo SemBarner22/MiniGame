@@ -19,14 +19,13 @@ import static android.graphics.Color.BLACK;
 
 
 public class SliderView extends View {
-
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
     private static final Paint text = new Paint();
     private static final Paint scorecolor = new Paint();
     public int w, h;
     float timer = 0;
-    State state;
+    public static State state;
     int score = 0;
     float clock = 200;
     boolean flag = false;
@@ -156,11 +155,13 @@ public class SliderView extends View {
         Integer evaluatedColor = (Integer) argbEvaluator.evaluate(1 - timer / clock, Color.GREEN, Color.RED);
         col.setColor(evaluatedColor);
         colbg.setColor(Color.BLACK);
-        if (state != State.LOSE) {
+        if (state != State.LOSE && !(state == State.PAUSED && SliderAct.st == State.LOSE)) {
             canvas.drawRect(w / 8 - 5, 3 * h / 4 - 5, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8) + 5, 5 * h / 6 + 5, colbg);
         }
         canvas.drawRect(w / 8, 3 * h / 4, Math.max(7 * w / 8 - 3 * w / 4 * (1 - timer / clock), w / 8), 5 * h / 6, col);
-        timer--;
+        if (state != State.PAUSED) {
+            timer--;
+        }
         scorecolor.setColor(Color.RED);
         scorecolor.setTextAlign(Paint.Align.CENTER);
         if (state != State.LOSE) {

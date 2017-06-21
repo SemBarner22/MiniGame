@@ -2,9 +2,11 @@ package com.example.user.miniteamsminigames;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,6 +14,18 @@ import android.widget.TextView;
 
 public class PointsActivity extends AppCompatActivity {
     public static Button tv;
+    public double rememberV;
+    public int rememberk;
+
+    @Override
+    protected void onPause() {
+        rememberk = Points.k;
+        rememberV = Points.V;
+        Points.V = 0;
+        Points.k = 0;
+        super.onPause();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +55,12 @@ public class PointsActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 1) {
             finish();
         }
+    }
+
+    @Override
+    protected void onPostResume() {
+        Points.k = rememberk;
+        Points.V = rememberV;
+        super.onPostResume();
     }
 }
