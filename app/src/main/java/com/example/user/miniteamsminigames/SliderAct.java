@@ -77,4 +77,30 @@ public class SliderAct extends AppCompatActivity {
             finish();
         }
     }
+    @Override
+    public void onBackPressed() {
+        if (lose_music.isPlaying()) {
+            lose_music.stop();
+        }
+        if (phon.isPlaying()) {
+            phon.stop();
+            phon.reset();
+            try {
+                phon.prepareAsync();
+                phon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        phon.seekTo(0);
+                        phon.setLooping(true);
+                        phon.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                phon.seekTo(0);
+                phon.setLooping(true);
+                phon.start();
+            }
+        }
+        finish();
+    }
 }

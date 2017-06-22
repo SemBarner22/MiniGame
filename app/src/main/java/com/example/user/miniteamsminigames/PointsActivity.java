@@ -92,4 +92,30 @@ public class PointsActivity extends AppCompatActivity {
         pause.setVisibility(View.VISIBLE);
         super.onPostResume();
     }
+    @Override
+    public void onBackPressed() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
+        if (music_in_game.isPlaying()) {
+            music_in_game.stop();
+            music_in_game.reset();
+            try {
+                music_in_game.prepareAsync();
+                music_in_game.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        music_in_game.seekTo(0);
+                        music_in_game.setLooping(true);
+                        music_in_game.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                music_in_game.seekTo(0);
+                music_in_game.setLooping(true);
+                music_in_game.start();
+            }
+        }
+        finish();
+    }
 }

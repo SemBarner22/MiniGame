@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -76,5 +77,32 @@ public class TapActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 1) {
             finish();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        if (loser.isPlaying()) {
+            loser.stop();
+        }
+        if (tap_music.isPlaying()) {
+            tap_music.stop();
+            tap_music.reset();
+            try {
+                tap_music.prepareAsync();
+                tap_music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        tap_music.seekTo(0);
+                        tap_music.setLooping(true);
+                        tap_music.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                tap_music.seekTo(0);
+                tap_music.setLooping(true);
+                tap_music.start();
+            }
+        }
+        finish();
+        Log.d("kek", "kek");
     }
 }
