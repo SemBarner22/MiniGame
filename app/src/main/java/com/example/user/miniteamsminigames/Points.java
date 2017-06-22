@@ -90,13 +90,6 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (state == State.LOSE && !rec) {
-            if (score > piano_pref.getInt("piano", 0)) {
-                piano_edit.putInt("piano", score);
-                piano_edit.commit();
-            }
-            rec = true;
-        }
         Square ss = new Square(0, 0, w, h, bg1, false);
         ss.draw(canvas);
         ss = new Square(0, 0, w - 1, h, bg, false);
@@ -154,10 +147,18 @@ public class Points extends View {
                 mediaPlayer.start();
                 flag = false;
              }
+             if (!rec) {
+                 if (score > piano_pref.getInt("piano", 0)) {
+                     piano_edit.putInt("piano", score);
+                     piano_edit.commit();
+                 }
+                 rec = true;
+             }
             PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
+
         }
         invalidate();
     }
