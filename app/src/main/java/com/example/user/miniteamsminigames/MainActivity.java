@@ -60,4 +60,13 @@ public class MainActivity extends AppCompatActivity {
         options.setOnClickListener(listenerOptions);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if (phone_music.isPlaying()) {
+            phone_music.stop();
+        }
+        finish();
+        super.onBackPressed();
+    }
 }
