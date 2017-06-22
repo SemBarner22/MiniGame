@@ -335,6 +335,7 @@ public class SliderView extends View {
 
     public void restart() {
        // menue.setVisibility(VISIBLE);
+        flag1 = true;
         rec = false;
         score = 0;
         if (lose_music.isPlaying()) {
