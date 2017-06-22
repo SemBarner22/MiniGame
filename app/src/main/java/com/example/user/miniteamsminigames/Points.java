@@ -14,6 +14,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.user.miniteamsminigames.MainActivity.piano_pref;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
 import static com.example.user.miniteamsminigames.PointsActivity.tv;
@@ -65,7 +67,7 @@ public class Points extends View {
         squares = new ArrayList<>();
         squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
-        piano_edit = RecordsActivity.piano_pref.edit();
+        piano_edit = getContext().getSharedPreferences("slide", MODE_PRIVATE).edit();
         V = 10;
     }
 
@@ -88,7 +90,7 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(score > RecordsActivity.piano_pref.getInt("piano", 0)) {
+        if(score > piano_pref.getInt("piano", 0)) {
             piano_edit.putInt("piano", score);
             piano_edit.commit();
         }

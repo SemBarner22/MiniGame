@@ -16,6 +16,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.user.miniteamsminigames.MainActivity.tap_pref;
 import static com.example.user.miniteamsminigames.TapActivity.loser;
 import static com.example.user.miniteamsminigames.TapActivity.tap_music;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
@@ -67,7 +69,7 @@ public class Tap_tap extends View {
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
         red.setColor(Color.RED);
-        tap_edit = RecordsActivity.tap_pref.edit();
+        tap_edit = getContext().getSharedPreferences("tap", MODE_PRIVATE).edit();
     }
 
     @Override
@@ -117,7 +119,7 @@ public class Tap_tap extends View {
         canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         boolean kek = false;
-        if(score > RecordsActivity.tap_pref.getFloat("tap", 0)) {
+        if(score > MainActivity.slide_pref.getFloat("tap", 0)); {
             tap_edit.putFloat("tap", (float) score);
             tap_edit.commit();
         }

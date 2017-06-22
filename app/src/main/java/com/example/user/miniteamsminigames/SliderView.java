@@ -16,7 +16,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.graphics.Color.BLACK;
+import static com.example.user.miniteamsminigames.MainActivity.slide_pref;
 import static com.example.user.miniteamsminigames.SliderAct.lose_music;
 import static com.example.user.miniteamsminigames.SliderAct.phon;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
@@ -76,7 +78,7 @@ public class SliderView extends View {
         states.add(State.NS_R);
         states.add(State.N);
         states.add(State.NN);
-        slide_edit = RecordsActivity.slide_pref.edit();
+        slide_edit = getContext().getSharedPreferences("slide", MODE_PRIVATE).edit();
         restart();
     }
 
@@ -92,7 +94,7 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(score > RecordsActivity.slide_pref.getInt("slide", 0)) {
+        if(score > slide_pref.getInt("slide", 0)) {
             slide_edit.putInt("slide", score);
             slide_edit.commit();
         }

@@ -1,6 +1,8 @@
 package com.example.user.miniteamsminigames;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    public static SharedPreferences piano_pref;
+    public static SharedPreferences slide_pref;
+    public static SharedPreferences tap_pref;
     MediaPlayer mediaPlayer;
     public MediaPlayer phone_music;
     public static Typeface tf;
@@ -18,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tap_pref = getSharedPreferences("tap", Context.MODE_PRIVATE);
+        piano_pref = getSharedPreferences("piano", Context.MODE_PRIVATE);
+        slide_pref = getSharedPreferences("slide", Context.MODE_PRIVATE);
         tf = Typeface.createFromAsset(getAssets(),
                 "fonts/PRICEDOW.TTF");
         //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lol);
