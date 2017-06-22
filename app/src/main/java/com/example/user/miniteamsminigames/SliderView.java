@@ -23,6 +23,7 @@ import static com.example.user.miniteamsminigames.MainActivity.slide_pref;
 import static com.example.user.miniteamsminigames.SliderAct.lose_music;
 import static com.example.user.miniteamsminigames.SliderAct.phon;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
+import static com.example.user.miniteamsminigames.SliderAct.rest;
 import static com.example.user.miniteamsminigames.SliderAct.tv;
 
 
@@ -30,7 +31,6 @@ public class SliderView extends View {
     public SharedPreferences.Editor slide_edit;
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
-    public static int rest;
     private static final Paint text = new Paint();
     private static final Paint scorecolor = new Paint();
     boolean flag1 = true;
