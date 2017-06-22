@@ -30,6 +30,7 @@ public class SliderView extends View {
     public SharedPreferences.Editor slide_edit;
     private static final Paint view = new Paint();
     private static final Paint Timer = new Paint();
+    public static int rest;
     private static final Paint text = new Paint();
     private static final Paint scorecolor = new Paint();
     boolean flag1 = true;
@@ -82,7 +83,11 @@ public class SliderView extends View {
         states.add(State.N);
         states.add(State.NN);
         slide_edit = getContext().getSharedPreferences("slide", MODE_PRIVATE).edit();
-        restart();
+        rest++;
+        if (rest == 2) {
+            rest = 0;
+            restart();
+        }
     }
 
     @Override
@@ -90,7 +95,11 @@ public class SliderView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         w = getMeasuredWidth();
         h = getMeasuredHeight();
-        restart();
+        rest++;
+        if (rest == 2) {
+            rest = 0;
+            restart();
+        }
     }
 
 

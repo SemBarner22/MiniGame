@@ -34,8 +34,8 @@ public class PausePointsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 finish();
-                Points p = (Points) findViewById(R.id.points);
-                p.restart();
+                Intent intent = new Intent(PausePointsActivity.this, PointsActivity.class);
+                startActivity(intent);
             }
         };
         options.setOnClickListener(listenerOptions);
