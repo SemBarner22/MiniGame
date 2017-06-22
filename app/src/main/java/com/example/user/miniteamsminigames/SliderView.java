@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.media.MediaPlayer;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -202,6 +203,39 @@ public class SliderView extends View {
                 phon.stop();
                 lose_music.setLooping(false);
                 lose_music.start();
+                phon.stop();
+                lose_music.setLooping(false);
+                if (!lose_music.isPlaying()) {
+                    try {
+                        lose_music.prepareAsync();
+                        lose_music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                lose_music.seekTo(0);
+                                lose_music.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        lose_music.seekTo(0);
+                        lose_music.start();
+                    }
+                } else {
+                    lose_music.stop();
+                    lose_music.reset();
+                    try {
+                        lose_music.prepareAsync();
+                        lose_music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                lose_music.seekTo(0);
+                                lose_music.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        lose_music.seekTo(0);
+                        lose_music.start();
+                    }
+                }
                 flag1 = false;
             }
             scorecolor.setTextSize(w / 3);
@@ -295,6 +329,45 @@ public class SliderView extends View {
         rec = false;
         phon.start();
         score = 0;
+        if (lose_music.isPlaying()) {
+            lose_music.stop();
+        }
+        if (!phon.isPlaying()) {
+            try {
+                phon.prepareAsync();
+                phon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        phon.seekTo(0);
+                        phon.setLooping(true);
+                        phon.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                phon.seekTo(0);
+                phon.setLooping(true);
+                phon.start();
+            }
+        } else {
+            phon.stop();
+            phon.reset();
+            try {
+                phon.prepareAsync();
+                phon.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        phon.seekTo(0);
+                        phon.setLooping(true);
+                        phon.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                phon.seekTo(0);
+                phon.setLooping(true);
+                phon.start();
+            }
+        }
+        flag = true;
         text.setTextSize(w / 6);
         Timer.setTextSize(w / 6);
         state = states.get((int) (Math.random() * 10));

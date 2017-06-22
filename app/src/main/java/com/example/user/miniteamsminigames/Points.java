@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -27,6 +29,7 @@ public class Points extends View {
     private static final Paint bg1 = new Paint();
     private static final Paint black = new Paint();
     private static final Paint white = new Paint();
+    boolean flag1 = true;
     boolean flag = true;
     private ArrayList<Square> squares;
     private ArrayList<Square> squares2;
@@ -86,7 +89,6 @@ public class Points extends View {
         if (intans == 2) {
             restart();
         }
-
     }
 
     @Override
@@ -144,18 +146,48 @@ public class Points extends View {
             canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
             V = 0;
-            if (flag)  {
+            if (flag1)  {
                 music_in_game.stop();
                 mediaPlayer.setLooping(false);
-                mediaPlayer.start();
-                flag = false;
-             }
-             if (!rec) {
-                 if (score > piano_pref.getInt("piano", 0)) {
+                if (!PointsActivity.mediaPlayer.isPlaying()) {
+                    try {
+                        PointsActivity.mediaPlayer.prepareAsync();
+                        PointsActivity.mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                PointsActivity.mediaPlayer.seekTo(0);
+                                PointsActivity.mediaPlayer.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        PointsActivity.mediaPlayer.seekTo(0);
+                        PointsActivity.mediaPlayer.start();
+                    }
+                } else {
+                    PointsActivity.mediaPlayer.stop();
+                    PointsActivity.mediaPlayer.reset();
+                    try {
+                        PointsActivity.mediaPlayer.prepareAsync();
+                        PointsActivity.mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                PointsActivity.mediaPlayer.seekTo(0);
+                                PointsActivity.mediaPlayer.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        PointsActivity.mediaPlayer.seekTo(0);
+                        PointsActivity.mediaPlayer.start();
+                    }
+                }
+                flag1 = false;
+            }
+            if (!rec) {
+                if (score > piano_pref.getInt("piano", 0)) {
                      piano_edit.putInt("piano", score);
                      piano_edit.commit();
-                 }
-                 rec = true;
+                }
+                rec = true;
              }
             PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
@@ -194,7 +226,45 @@ public class Points extends View {
 //        new MyTimer(3000L, 10).start();
         rec = false;
         flag = true;
-        music_in_game.start();
+        flag1 = true;
+        if (PointsActivity.mediaPlayer.isPlaying()) {
+            PointsActivity.mediaPlayer.stop();
+        }
+        if (!PointsActivity.music_in_game.isPlaying()) {
+            try {
+                PointsActivity.music_in_game.prepareAsync();
+                PointsActivity.music_in_game.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        PointsActivity.music_in_game.seekTo(0);
+                        music_in_game.setLooping(true);
+                        PointsActivity.music_in_game.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                PointsActivity.music_in_game.seekTo(0);
+                music_in_game.setLooping(true);
+                PointsActivity.music_in_game.start();
+            }
+        } else {
+            PointsActivity.music_in_game.stop();
+            PointsActivity.music_in_game.reset();
+            try {
+                PointsActivity.music_in_game.prepareAsync();
+                PointsActivity.music_in_game.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        PointsActivity.music_in_game.seekTo(0);
+                        music_in_game.setLooping(true);
+                        PointsActivity.music_in_game.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                PointsActivity.music_in_game.seekTo(0);
+                music_in_game.setLooping(true);
+                PointsActivity.music_in_game.start();
+            }
+        }
         state = State.NOT_LOSE;
         tv.setVisibility(INVISIBLE);
         bg.setColor(Color.BLACK);

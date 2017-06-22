@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Mini.iml" filepath="$PROJECT_DIR$/Mini.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniGame.iml" filepath="$PROJECT_DIR$/MiniGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniGame1.iml" filepath="$PROJECT_DIR$/MiniGame1.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniGame123.iml" filepath="$PROJECT_DIR$/MiniGame123.iml" />
@@ -11,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/MiniGame6.iml" filepath="$PROJECT_DIR$/MiniGame6.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniGame7.iml" filepath="$PROJECT_DIR$/MiniGame7.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniTeam'sMinigames.iml" filepath="$PROJECT_DIR$/MiniTeam'sMinigames.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
