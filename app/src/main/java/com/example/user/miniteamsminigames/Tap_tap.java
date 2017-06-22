@@ -87,6 +87,7 @@ public class Tap_tap extends View {
     }
 
     public void restart() {
+        rec = false;
         score = 0;
         tap_music.start();
         lr = false;
@@ -120,14 +121,6 @@ public class Tap_tap extends View {
         canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         boolean kek = false;
-        if (state == State.LOSE && !rec) {
-            if (score > MainActivity.slide_pref.getFloat("tap", 0)) ;
-            {
-                tap_edit.putFloat("tap", (float) score);
-                tap_edit.commit();
-            }
-            rec = true;
-        }
         for (Square s : squares) {
             if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
                     (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {
@@ -136,17 +129,18 @@ public class Tap_tap extends View {
         }
         if (!kek) {
             state = State.LOSE;
-        }
-        for (Square sq : squares) {
-            sq.draw(canvas);
-        }
-        if (!lr) {
-            for (Square sq : squares) {
-                sq.y += V;
-            }
         } else {
             for (Square sq : squares) {
-                sq.x += V;
+                sq.draw(canvas);
+            }
+            if (!lr) {
+                for (Square sq : squares) {
+                    sq.y += V;
+                }
+            } else {
+                for (Square sq : squares) {
+                    sq.x += V;
+                }
             }
         }
         canvas.drawRect(-point, -point, 2 * point, 2 * point, red);
@@ -212,6 +206,14 @@ public class Tap_tap extends View {
                 canvas.drawText((int) (score * 100) / 100 + ".0" + (int) (score * 100) % 100, w / 2, h / 2, text);
 
             }
+        }
+        if (state == State.LOSE && !rec) {
+            if (score > MainActivity.tap_pref.getFloat("tap", 0)) ;
+            {
+                tap_edit.putFloat("tap", (float) (score - 0.01));
+                tap_edit.commit();
+            }
+            rec = true;
         }
         invalidate();
     }

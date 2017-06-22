@@ -45,7 +45,9 @@
             android:name=".PauseSliderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".RecordsActivity"></activity>
+        <activity android:name=".RecordsActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

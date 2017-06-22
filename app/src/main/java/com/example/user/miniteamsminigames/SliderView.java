@@ -22,6 +22,7 @@ import static com.example.user.miniteamsminigames.MainActivity.slide_pref;
 import static com.example.user.miniteamsminigames.SliderAct.lose_music;
 import static com.example.user.miniteamsminigames.SliderAct.phon;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
+import static com.example.user.miniteamsminigames.SliderAct.tv;
 
 
 public class SliderView extends View {
@@ -95,6 +96,11 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (state == State.LOSE) {
+            tv.setVisibility(VISIBLE);
+        } else {
+            tv.setVisibility(INVISIBLE);
+        }
         if (state == State.LOSE && !rec) {
             if (score > slide_pref.getInt("slide", 0)) {
                 slide_edit.putInt("slide", score);
@@ -283,7 +289,9 @@ public class SliderView extends View {
     }
 
     public void restart() {
+        rec = false;
         phon.start();
+        score = 0;
         text.setTextSize(w / 6);
         Timer.setTextSize(w / 6);
         state = states.get((int) (Math.random() * 10));

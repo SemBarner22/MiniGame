@@ -68,7 +68,7 @@ public class Points extends View {
         squares = new ArrayList<>();
         squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
-        piano_edit = getContext().getSharedPreferences("slide", MODE_PRIVATE).edit();
+        piano_edit = getContext().getSharedPreferences("piano", MODE_PRIVATE).edit();
         V = 10;
     }
 
@@ -183,6 +183,7 @@ public class Points extends View {
     }
 
     public void restart() {
+        rec = false;
         flag = true;
         music_in_game.start();
         state = State.NOT_LOSE;

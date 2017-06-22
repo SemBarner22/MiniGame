@@ -5,10 +5,12 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 
 public class SliderAct extends AppCompatActivity {
+    public static Button tv;
     public static ImageButton pause;
     public static State st;
 
@@ -35,6 +37,21 @@ public class SliderAct extends AppCompatActivity {
         lose_music = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         phon = MediaPlayer.create(getApplicationContext(), R.raw.slidermusic);
         setContentView(R.layout.activity_slide);
+        tv = (Button) findViewById(R.id.tv);
+        View.OnClickListener list = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SliderView p = (SliderView) findViewById(R.id.slide);
+                p.restart();
+//                finish();
+//                Intent intent = new Intent(PointsActivity.this, PointsActivity.class);
+//                startActivity(intent);
+            }
+        };
+        tv.setOnClickListener(list);
+        //tv.setTextColor(Color.RED);
+        //tv.setTypeface(tf);
+        tv.setVisibility(View.INVISIBLE);
         pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
