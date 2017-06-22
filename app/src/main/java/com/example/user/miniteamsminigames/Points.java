@@ -86,6 +86,7 @@ public class Points extends View {
         if (intans == 2) {
             restart();
         }
+
     }
 
     @Override
@@ -142,6 +143,7 @@ public class Points extends View {
            // PointsActivity.tv.setText(" " + score);
             canvas.drawText(Integer.toString(score), w / 2, h / 8, text);
         } else {
+            V = 0;
             if (flag)  {
                 music_in_game.stop();
                 mediaPlayer.setLooping(false);

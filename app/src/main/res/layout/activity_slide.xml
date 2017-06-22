@@ -19,7 +19,7 @@
         android:gravity="center"
         android:layout_height="wrap_content">
         <Button
-            android:background="@mipmap/restart"
+            android:background="@mipmap/redrestart"
             android:id="@+id/tv"
             style="@android:style/TextAppearance.Large"
             android:textSize="50dp"
@@ -35,7 +35,7 @@
 
     <ImageButton
         android:id="@+id/pause"
-        app:srcCompat="@mipmap/pause_button"
+        app:srcCompat="@mipmap/redpause"
         android:background="@null"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
