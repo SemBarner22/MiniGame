@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+
 public class MainActivity extends AppCompatActivity {
     public static SharedPreferences piano_pref;
     public static SharedPreferences slide_pref;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
+        phone_music.setLooping(true);
         phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

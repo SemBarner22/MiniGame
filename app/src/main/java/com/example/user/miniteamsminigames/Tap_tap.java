@@ -87,8 +87,46 @@ public class Tap_tap extends View {
     }
 
     public void restart() {
+        flag = true;
         score = 0;
-        tap_music.start();
+        if (loser.isPlaying()) {
+            loser.stop();
+        }
+        if (!tap_music.isPlaying()) {
+            try {
+                tap_music.prepareAsync();
+                tap_music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        tap_music.seekTo(0);
+                        tap_music.setLooping(true);
+                        tap_music.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                tap_music.seekTo(0);
+                tap_music.setLooping(true);
+                tap_music.start();
+            }
+        } else {
+            tap_music.stop();
+            tap_music.reset();
+            try {
+                tap_music.prepareAsync();
+                tap_music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        tap_music.seekTo(0);
+                        tap_music.setLooping(true);
+                        tap_music.start();
+                    }
+                });
+            } catch (IllegalStateException e) {
+                tap_music.seekTo(0);
+                tap_music.setLooping(true);
+                tap_music.start();
+            }
+        }
         lr = false;
         squares = new ArrayList<>();
         state = State.NOT_LOSE;
@@ -202,7 +240,37 @@ public class Tap_tap extends View {
             if (flag) {
                 tap_music.stop();
                 loser.setLooping(false);
-                loser.start();
+                if (!loser.isPlaying()) {
+                    try {
+                        loser.prepareAsync();
+                        loser.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                loser.seekTo(0);
+                                loser.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        loser.seekTo(0);
+                        loser.start();
+                    }
+                } else {
+                    loser.stop();
+                    loser.reset();
+                    try {
+                        loser.prepareAsync();
+                        loser.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mediaPlayer) {
+                                loser.seekTo(0);
+                                loser.start();
+                            }
+                        });
+                    } catch (IllegalStateException e) {
+                        loser.seekTo(0);
+                        loser.start();
+                    }
+                }
                 flag = false;
             }
             text.setTextSize(w / 3);
