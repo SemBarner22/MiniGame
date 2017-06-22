@@ -18,12 +18,12 @@ public class RecordsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_records);
         Button tap = (Button) findViewById(R.id.tap);
         tap.setTypeface(tf);
-        tap.setText("HIGHSCORE " + tap_pref.getInt("tap", 0));
+        tap.setText("TAP HIGHSCORE " + tap_pref.getInt("tap", 0));
         Button piano = (Button) findViewById(R.id.piano);
         piano.setTypeface(tf);
-        piano.setText("HIGHSCORE " + piano_pref.getInt("piano", 0));
+        piano.setText("PIANO HIGHSCORE " + piano_pref.getInt("piano", 0));
         Button slide = (Button) findViewById(R.id.slide);
         slide.setTypeface(tf);
-        slide.setText("HIGHSCORE " + slide_pref.getInt("slide", 0));
+        slide.setText("SLIDER HIGHSCORE " + slide_pref.getInt("slide", 0));
     }
 }
