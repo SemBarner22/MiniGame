@@ -162,7 +162,7 @@ public class Tap_tap extends View {
         canvas.rotate(45);
         boolean kek = false;
         if (state == State.LOSE && !rec) {
-            if (score > MainActivity.slide_pref.getFloat("tap", 0)) ;
+            if (score > MainActivity.tap_pref.getFloat("tap", 0)) ;
             {
                 tap_edit.putFloat("tap", (float) score);
                 tap_edit.commit();
