@@ -19,12 +19,22 @@ public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
     public int rememberk;
+    public static boolean sound;
+    public static boolean music;
     public static Points p;
     public static Button menu;
     public static ImageButton pause;
 
     @Override
     protected void onPause() {
+        if (mediaPlayer.isPlaying()) {
+            sound = true;
+            mediaPlayer.stop();
+        }
+        if (music_in_game.isPlaying()) {
+            music = true;
+            mediaPlayer.stop();
+        }
         rememberk = Points.k;
         rememberV = Points.V;
         pause.setVisibility(View.INVISIBLE);
@@ -87,6 +97,14 @@ public class PointsActivity extends AppCompatActivity {
 
     @Override
     protected void onPostResume() {
+        if (music) {
+            music = false;
+            music_in_game.start();
+        }
+        if (sound) {
+            sound = false;
+            mediaPlayer.start();
+        }
         Points.k = rememberk;
         Points.V = rememberV;
         pause.setVisibility(View.VISIBLE);
@@ -117,5 +135,10 @@ public class PointsActivity extends AppCompatActivity {
             }
         }
         finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

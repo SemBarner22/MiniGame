@@ -105,4 +105,9 @@ public class TapActivity extends AppCompatActivity {
         finish();
         Log.d("kek", "kek");
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
