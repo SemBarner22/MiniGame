@@ -39,7 +39,7 @@ public class Tap_tap extends View {
     int w, h, d;
     boolean rec = false;
     Tap_Player player;
-    public static double V = 6;
+    public static double V = 8;
     int point = 0;
     double score = 0;
     double dt = 0.01;
@@ -133,7 +133,7 @@ public class Tap_tap extends View {
         lr = false;
         squares = new ArrayList<>();
         state = State.NOT_LOSE;
-        V = 6;
+        V = 8;
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
         red.setColor(Color.RED);

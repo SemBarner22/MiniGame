@@ -182,7 +182,7 @@ public class SliderView extends View {
         if (timer == 0 && state != State.LOSE && flag) {
             flag = false;
             if (clock > 75) {
-                clock--;
+                clock -= 10;
             }
             timer = clock;
         }
@@ -334,6 +334,7 @@ public class SliderView extends View {
     }
 
     public void restart() {
+        clock = 200;
        // menue.setVisibility(VISIBLE);
         flag1 = true;
         rec = false;
