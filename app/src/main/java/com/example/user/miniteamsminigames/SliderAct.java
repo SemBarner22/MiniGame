@@ -14,7 +14,6 @@ public class SliderAct extends AppCompatActivity {
     public static ImageButton pause;
     public static Button menue;
     public static State st;
-    public static int rest;
 
     @Override
     protected void onPause() {

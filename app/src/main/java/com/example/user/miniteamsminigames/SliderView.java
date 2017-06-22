@@ -23,7 +23,6 @@ import static com.example.user.miniteamsminigames.MainActivity.slide_pref;
 import static com.example.user.miniteamsminigames.SliderAct.lose_music;
 import static com.example.user.miniteamsminigames.SliderAct.phon;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
-import static com.example.user.miniteamsminigames.SliderAct.rest;
 import static com.example.user.miniteamsminigames.SliderAct.tv;
 
 
@@ -42,6 +41,7 @@ public class SliderView extends View {
     float clock = 200;
     boolean flag = false;
     Paint col = new Paint();
+    int rest;
     Paint colbg = new Paint();
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
