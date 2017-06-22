@@ -35,6 +35,7 @@ public class SliderView extends View {
     float timer = 0;
     public static State state;
     int score = 0;
+    boolean rec = false;
     float clock = 200;
     boolean flag = false;
     Paint col = new Paint();
@@ -94,9 +95,12 @@ public class SliderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(score > slide_pref.getInt("slide", 0)) {
-            slide_edit.putInt("slide", score);
-            slide_edit.commit();
+        if (state == State.LOSE && !rec) {
+            if (score > slide_pref.getInt("slide", 0)) {
+                slide_edit.putInt("slide", score);
+                slide_edit.commit();
+            }
+            rec = true;
         }
         text.setTypeface(tf);
         //canvas.drawText("" + timer / 10, w / 2, h / 8, Timer);

@@ -36,6 +36,7 @@ public class Tap_tap extends View {
     private static final Paint red = new Paint();
     int vx, vy, r;
     int w, h, d;
+    boolean rec = false;
     Tap_Player player;
     public static double V = 6;
     int point = 0;
@@ -119,9 +120,13 @@ public class Tap_tap extends View {
         canvas.translate(w / 2, 3 * h / 4);
         canvas.rotate(45);
         boolean kek = false;
-        if(score > MainActivity.slide_pref.getFloat("tap", 0)); {
-            tap_edit.putFloat("tap", (float) score);
-            tap_edit.commit();
+        if (state == State.LOSE && !rec) {
+            if (score > MainActivity.slide_pref.getFloat("tap", 0)) ;
+            {
+                tap_edit.putFloat("tap", (float) score);
+                tap_edit.commit();
+            }
+            rec = true;
         }
         for (Square s : squares) {
             if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&

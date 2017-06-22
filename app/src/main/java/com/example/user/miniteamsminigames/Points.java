@@ -35,6 +35,7 @@ public class Points extends View {
     public int score = 0;
     public int w, h;
     public static int k;
+    boolean rec = false;
     public State state = State.NOT_LOSE;
     boolean ans = false;
     int intans = 0;
@@ -74,7 +75,6 @@ public class Points extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         w = getMeasuredWidth();
         h = getMeasuredHeight();
 //        if (!ans) {
@@ -90,9 +90,12 @@ public class Points extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(score > piano_pref.getInt("piano", 0)) {
-            piano_edit.putInt("piano", score);
-            piano_edit.commit();
+        if (state == State.LOSE && !rec) {
+            if (score > piano_pref.getInt("piano", 0)) {
+                piano_edit.putInt("piano", score);
+                piano_edit.commit();
+            }
+            rec = true;
         }
         Square ss = new Square(0, 0, w, h, bg1, false);
         ss.draw(canvas);
