@@ -27,7 +27,7 @@
             android:layout_height="100dp" />
 
         <Button
-            android:background="@mipmap/mainmenu"
+            android:background="@mipmap/redmenu"
             android:id="@+id/menu"
             style="@android:style/TextAppearance.Large"
             android:textSize="50dp"
