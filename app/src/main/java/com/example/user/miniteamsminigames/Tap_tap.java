@@ -118,7 +118,7 @@ public class Tap_tap extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0, 0, w, h, bg);
-        canvas.translate(w / 2, 3 * h / 4);
+        canvas.translate(w / 2, 2 * h / 3);
         canvas.rotate(45);
         boolean kek = false;
         for (Square s : squares) {
@@ -179,7 +179,7 @@ public class Tap_tap extends View {
             }
         }
         canvas.rotate(-45);
-        canvas.translate(-w / 2, -3 * h / 4);
+        canvas.translate(-w / 2, -2 * h / 3);
         Paint text = new Paint();
         text.setColor(Color.RED);
         text.setTextAlign(Paint.Align.CENTER);

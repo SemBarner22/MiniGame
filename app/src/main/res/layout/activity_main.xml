@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView
-        android:src="@mipmap/bg2"
+        android:src="@mipmap/bestbg"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
