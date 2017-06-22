@@ -18,7 +18,6 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.user.miniteamsminigames.MainActivity.piano_pref;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
-import static com.example.user.miniteamsminigames.PointsActivity.menu;
 import static com.example.user.miniteamsminigames.PointsActivity.tv;
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 
@@ -40,6 +39,7 @@ public class Points extends View {
     public State state = State.NOT_LOSE;
     boolean ans = false;
     int intans = 0;
+    boolean time = false;
 
     public Points(Context context) {
         super(context);
@@ -157,7 +157,6 @@ public class Points extends View {
                  }
                  rec = true;
              }
-             menu.setVisibility(VISIBLE);
             PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
@@ -188,7 +187,11 @@ public class Points extends View {
     }
 
     public void restart() {
-        menu.setVisibility(INVISIBLE);
+        if (time == false) {
+            time = true;
+            new MyTimer(3000L, 10).start();
+        }
+//        new MyTimer(3000L, 10).start();
         rec = false;
         flag = true;
         music_in_game.start();
@@ -201,7 +204,6 @@ public class Points extends View {
         squares = new ArrayList<>();
         squares2 = new ArrayList<>();
         whiteSquares = new ArrayList<>();
-        V = 10;
         int random = (int) (Math.random() * 4);
         squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
         for (int i = 4; i >= -1; i--) {
@@ -212,7 +214,6 @@ public class Points extends View {
         score = 0;
         k = 1;
         V = 10;
-        new MyTimer(3000L, 10).start();
     }
 
     class MyTimer extends CountDownTimer {
@@ -226,7 +227,7 @@ public class Points extends View {
 
         @Override
         public void onFinish() {
-            if (state != State.LOSE) {
+            if (true) {
                 V += k;
                 new MyTimer(3000L, 10).start();
             }
