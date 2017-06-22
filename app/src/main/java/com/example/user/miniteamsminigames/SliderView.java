@@ -84,7 +84,7 @@ public class SliderView extends View {
         states.add(State.NN);
         slide_edit = getContext().getSharedPreferences("slide", MODE_PRIVATE).edit();
         rest++;
-        if (rest == 2) {
+        if (rest >= 2) {
             rest = 0;
             restart();
         }
@@ -96,7 +96,7 @@ public class SliderView extends View {
         w = getMeasuredWidth();
         h = getMeasuredHeight();
         rest++;
-        if (rest == 2) {
+        if (rest >= 2) {
             rest = 0;
             restart();
         }
