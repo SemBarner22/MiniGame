@@ -191,6 +191,7 @@ public class Points extends View {
              }
             PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
+            PointsActivity.menu.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
             canvas.drawText(Integer.toString(score), w / 2, h / 2, text);
 
@@ -267,6 +268,7 @@ public class Points extends View {
         }
         state = State.NOT_LOSE;
         tv.setVisibility(INVISIBLE);
+        PointsActivity.menu.setVisibility(INVISIBLE);
         bg.setColor(Color.BLACK);
         bg1.setColor(Color.BLACK);
         black.setColor(Color.BLACK);
