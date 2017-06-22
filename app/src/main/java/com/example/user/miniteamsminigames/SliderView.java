@@ -97,9 +97,11 @@ public class SliderView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (state == State.LOSE) {
+            SliderAct.menue.setVisibility(VISIBLE);
             tv.setVisibility(VISIBLE);
         } else {
             tv.setVisibility(INVISIBLE);
+            SliderAct.menue.setVisibility(INVISIBLE);
         }
         if (state == State.LOSE && !rec) {
             if (score > slide_pref.getInt("slide", 0)) {
@@ -289,6 +291,7 @@ public class SliderView extends View {
     }
 
     public void restart() {
+       // menue.setVisibility(VISIBLE);
         rec = false;
         phon.start();
         score = 0;

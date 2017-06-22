@@ -25,6 +25,11 @@
             android:textSize="50dp"
             android:layout_width="100dp"
             android:layout_height="100dp" />
+        <Button
+            android:background="@mipmap/mainmenu"
+            android:id="@+id/menu"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
 
 

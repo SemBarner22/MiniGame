@@ -18,6 +18,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.user.miniteamsminigames.MainActivity.piano_pref;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
 import static com.example.user.miniteamsminigames.PointsActivity.mediaPlayer;
+import static com.example.user.miniteamsminigames.PointsActivity.menu;
 import static com.example.user.miniteamsminigames.PointsActivity.tv;
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
 
@@ -154,6 +155,7 @@ public class Points extends View {
                  }
                  rec = true;
              }
+             menu.setVisibility(VISIBLE);
             PointsActivity.pause.setVisibility(INVISIBLE);
             PointsActivity.tv.setVisibility(View.VISIBLE);
             text.setTextSize(w / 3);
@@ -184,6 +186,7 @@ public class Points extends View {
     }
 
     public void restart() {
+        menu.setVisibility(INVISIBLE);
         rec = false;
         flag = true;
         music_in_game.start();

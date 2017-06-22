@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 public class TapActivity extends AppCompatActivity {
     public static MediaPlayer tap_music;
     public static MediaPlayer loser;
+    public static Button menu;
     public static ImageButton pause;
     public static Button tv;
     public static double rememV;
@@ -35,6 +36,15 @@ public class TapActivity extends AppCompatActivity {
         tap_music = MediaPlayer.create(getApplicationContext(), R.raw.taptap);
         loser = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         setContentView(R.layout.activity_tap);
+        menu = (Button) findViewById(R.id.menu);
+        View.OnClickListener men = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        };
+        menu.setOnClickListener(men);
+        menu.setVisibility(View.INVISIBLE);
         tv = (Button) findViewById(R.id.tv);
         View.OnClickListener list = new View.OnClickListener() {
             @Override

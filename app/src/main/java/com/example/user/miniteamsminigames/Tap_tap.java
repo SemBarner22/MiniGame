@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.user.miniteamsminigames.MainActivity.tap_pref;
 import static com.example.user.miniteamsminigames.TapActivity.loser;
+import static com.example.user.miniteamsminigames.TapActivity.menu;
 import static com.example.user.miniteamsminigames.TapActivity.tap_music;
 import static com.example.user.miniteamsminigames.MainActivity.tf;
 
@@ -87,6 +88,7 @@ public class Tap_tap extends View {
     }
 
     public void restart() {
+        menu.setVisibility(INVISIBLE);
         rec = false;
         score = 0;
         tap_music.start();
@@ -164,6 +166,7 @@ public class Tap_tap extends View {
             V = 0;
             TapActivity.tv.setVisibility(VISIBLE);
             TapActivity.pause.setVisibility(INVISIBLE);
+            menu.setVisibility(VISIBLE);
         }
 
         if (state == State.NOT_LOSE) {

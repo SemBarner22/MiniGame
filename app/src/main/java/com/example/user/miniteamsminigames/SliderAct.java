@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 public class SliderAct extends AppCompatActivity {
     public static Button tv;
     public static ImageButton pause;
+    public static Button menue;
     public static State st;
 
     @Override
@@ -37,6 +38,15 @@ public class SliderAct extends AppCompatActivity {
         lose_music = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         phon = MediaPlayer.create(getApplicationContext(), R.raw.slidermusic);
         setContentView(R.layout.activity_slide);
+        menue = (Button) findViewById(R.id.menu);
+        menue.setVisibility(View.VISIBLE);
+        View.OnClickListener men = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        };
+        menue.setOnClickListener(men);
         tv = (Button) findViewById(R.id.tv);
         View.OnClickListener list = new View.OnClickListener() {
             @Override
@@ -49,8 +59,6 @@ public class SliderAct extends AppCompatActivity {
             }
         };
         tv.setOnClickListener(list);
-        //tv.setTextColor(Color.RED);
-        //tv.setTypeface(tf);
         tv.setVisibility(View.INVISIBLE);
         pause = (ImageButton) findViewById(R.id.pause);
         View.OnClickListener listener = new View.OnClickListener() {

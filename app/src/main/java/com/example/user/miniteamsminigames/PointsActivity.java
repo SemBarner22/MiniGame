@@ -19,6 +19,7 @@ public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
     public int rememberk;
+    public static Button menu;
     public static ImageButton pause;
 
     @Override
@@ -40,6 +41,15 @@ public class PointsActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
         tv = (Button) findViewById(R.id.tv);
+        menu = (Button) findViewById(R.id.menu);
+        View.OnClickListener men = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        };
+        menu.setOnClickListener(men);
+        menu.setVisibility(View.INVISIBLE);
         View.OnClickListener list = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
