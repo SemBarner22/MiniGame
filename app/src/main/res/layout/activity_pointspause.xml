@@ -37,6 +37,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_below="@id/layout1"
+        android:id="@+id/l"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content">
@@ -46,5 +47,9 @@
             android:layout_width="100dp"
             android:layout_height="100dp" />
     </LinearLayout>
+    <Space
+        android:layout_below="@id/l"
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
 
 </RelativeLayout>
