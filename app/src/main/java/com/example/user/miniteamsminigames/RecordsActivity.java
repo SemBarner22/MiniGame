@@ -18,7 +18,7 @@ public class RecordsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_records);
         Button tap = (Button) findViewById(R.id.tap);
         tap.setTypeface(tf);
-        tap.setText("HIGHSCORE " + Float.toString(tap_pref.getFloat("tap", 0)));
+        tap.setText("HIGHSCORE " + tap_pref.getInt("tap", 0));
         Button piano = (Button) findViewById(R.id.piano);
         piano.setTypeface(tf);
         piano.setText("HIGHSCORE " + piano_pref.getInt("piano", 0));

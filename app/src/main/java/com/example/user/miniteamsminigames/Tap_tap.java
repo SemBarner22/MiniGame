@@ -17,7 +17,6 @@ import android.view.View;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.user.miniteamsminigames.MainActivity.tap_pref;
 import static com.example.user.miniteamsminigames.TapActivity.loser;
 import static com.example.user.miniteamsminigames.TapActivity.menu;
 import static com.example.user.miniteamsminigames.TapActivity.tap_music;
@@ -161,14 +160,6 @@ public class Tap_tap extends View {
         canvas.translate(w / 2, 2 * h / 3);
         canvas.rotate(45);
         boolean kek = false;
-        if (state == State.LOSE && !rec) {
-            if (score > MainActivity.tap_pref.getFloat("tap", 0)) ;
-            {
-                tap_edit.putFloat("tap", (float) score);
-                tap_edit.commit();
-            }
-            rec = true;
-        }
         for (Square s : squares) {
             if ((s.x + point) * (s.x + s.w + point) < 0 && (s.y + point) * (s.y + s.h + point) < 0 &&
                     (s.x - point) * (s.x + s.w - point) < 0 && (s.y - point) * (s.y + s.h - point) < 0) {
@@ -287,9 +278,9 @@ public class Tap_tap extends View {
             }
         }
         if (state == State.LOSE && !rec) {
-            if (score > MainActivity.tap_pref.getFloat("tap", 0)) ;
+            if ((int) (score * 100) > MainActivity.tap_pref.getInt("tap", 0))
             {
-                tap_edit.putFloat("tap", (float) (score - 0.01));
+                tap_edit.putInt("tap", (int) (score * 100));
                 tap_edit.commit();
             }
             rec = true;
