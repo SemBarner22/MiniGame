@@ -19,6 +19,7 @@ public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
     public int rememberk;
+    public static Points p;
     public static Button menu;
     public static ImageButton pause;
 

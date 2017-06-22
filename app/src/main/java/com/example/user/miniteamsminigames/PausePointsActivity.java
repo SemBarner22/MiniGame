@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import static com.example.user.miniteamsminigames.PointsActivity.music_in_game;
+import static com.example.user.miniteamsminigames.PointsActivity.p;
 
 public class PausePointsActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

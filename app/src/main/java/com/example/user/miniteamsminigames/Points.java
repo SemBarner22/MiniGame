@@ -98,19 +98,21 @@ public class Points extends View {
         ss.draw(canvas);
         ss = new Square(0, 0, w - 1, h, bg, false);
         ss.draw(canvas);
-        int diff = whiteSquares.get(0).y - h;
-        if (diff >= 0) {
-            for (int i = 0; i < 4; i++) {
-                whiteSquares.add(new Square(i * w / 4, 2 + diff + (-h / 4), w / 4 - 1, h / 4 - 1, white, false));
-                whiteSquares.remove(0);
+        if (whiteSquares.size() > 0) {
+            int diff = whiteSquares.get(0).y - h;
+            if (diff >= 0) {
+                for (int i = 0; i < 4; i++) {
+                    whiteSquares.add(new Square(i * w / 4, 2 + diff + (-h / 4), w / 4 - 1, h / 4 - 1, white, false));
+                    whiteSquares.remove(0);
+                }
+            }
+            diff = squares.get(squares.size() - 1).y;
+            if (diff > 0) {
+                int random = (int) (Math.random() * 4);
+                squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black, false));
+                squares2.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4, white, false));
             }
         }
-        diff = squares.get(squares.size() - 1).y;
-        if (diff > 0) {
-            int random = (int) (Math.random() * 4);
-            squares.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4 - 1, black, false));
-            squares2.add(new Square(random * w / 4, diff - h / 4, w / 4 - 1, h / 4, white, false));
-        }
         for (Square s : whiteSquares) {
             s.draw(canvas);
         }
@@ -129,9 +131,11 @@ public class Points extends View {
         for (Square s : squares2) {
             s.y += V;
         }
-        if (squares.get(0).y > h) {
-            state = State.LOSE;
-            V = 0;
+        if (squares.size() > 0) {
+            if (squares.get(0).y > h) {
+                state = State.LOSE;
+                V = 0;
+            }
         }
         Paint text = new Paint();
         text.setColor(Color.RED);
@@ -220,6 +224,7 @@ public class Points extends View {
     }
 
     public void restart() {
+        whiteSquares.add(new Square(w / 4, 2 + (-h / 4), w / 4 - 1, h / 4 - 1, white, false));
         if (time == false) {
             time = true;
             new MyTimer(3000L, 10).start();
