@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tap_pref = getSharedPreferences("tap", Context.MODE_PRIVATE);
+        tap_pref = getSharedPreferences("tap1", Context.MODE_PRIVATE);
         piano_pref = getSharedPreferences("piano", Context.MODE_PRIVATE);
         slide_pref = getSharedPreferences("slide", Context.MODE_PRIVATE);
         tf = Typeface.createFromAsset(getAssets(),

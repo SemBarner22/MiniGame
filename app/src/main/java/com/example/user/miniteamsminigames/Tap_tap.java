@@ -70,7 +70,7 @@ public class Tap_tap extends View {
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
         red.setColor(Color.RED);
-        tap_edit = getContext().getSharedPreferences("tap", MODE_PRIVATE).edit();
+        tap_edit = getContext().getSharedPreferences("tap1", MODE_PRIVATE).edit();
     }
 
     @Override
@@ -278,9 +278,9 @@ public class Tap_tap extends View {
             }
         }
         if (state == State.LOSE && !rec) {
-            if ((int) (score * 100) > MainActivity.tap_pref.getInt("tap", 0))
+            if ((int) (score * 100) > MainActivity.tap_pref.getInt("tap1", 0))
             {
-                tap_edit.putInt("tap", (int) (score * 100));
+                tap_edit.putInt("tap1", (int) (score * 100));
                 tap_edit.commit();
             }
             rec = true;
