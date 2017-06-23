@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     public static Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
-        phone_music.setLooping(true);
-        phone_music.start();
+        //phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
+        //phone_music.setLooping(true);
+        //phone_music.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tap_pref = getSharedPreferences("tap1", Context.MODE_PRIVATE);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener listenerStart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phone_music.stop();
+                //phone_music.stop();
                 Button button = (Button) v;
                 Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(intent);
@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (phone_music.isPlaying()) {
-            phone_music.stop();
-        }
-        finish();
+      //  if (phone_music.isPlaying()) {
+      //      phone_music.stop();
+     //   }
+      //  finish();
         super.onBackPressed();
     }
 }

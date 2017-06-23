@@ -27,14 +27,6 @@ public class PointsActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        if (mediaPlayer.isPlaying()) {
-            sound = true;
-            mediaPlayer.stop();
-        }
-        if (music_in_game.isPlaying()) {
-            music = true;
-            music_in_game.stop();
-        }
         rememberk = Points.k;
         rememberV = p.V;
         pause.setVisibility(View.INVISIBLE);
@@ -98,14 +90,6 @@ public class PointsActivity extends AppCompatActivity {
 
     @Override
     protected void onPostResume() {
-        if (music) {
-            music = false;
-            music_in_game.start();
-        }
-        if (sound) {
-            sound = false;
-            mediaPlayer.start();
-        }
         Points.k = rememberk;
         p.V = rememberV;
         pause.setVisibility(View.VISIBLE);
