@@ -33,7 +33,7 @@ public class PointsActivity extends AppCompatActivity {
         }
         if (music_in_game.isPlaying()) {
             music = true;
-            mediaPlayer.stop();
+            music_in_game.stop();
         }
         rememberk = Points.k;
         rememberV = Points.V;
