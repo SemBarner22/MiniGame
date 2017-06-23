@@ -38,14 +38,14 @@ public class SliderView extends View {
     public static State state;
     int score = 0;
     boolean rec = false;
-    float clock = 200;
+    float clock = 150;
     boolean flag = false;
     Paint col = new Paint();
     int rest;
     Paint colbg = new Paint();
     ArrayList<State> states = new ArrayList<>();
     private float x1, x2, y1, y2;
-    static final int MIN_DISTANCE = 150;
+    static final int MIN_DISTANCE = 100;
 
     public SliderView(Context context) {
         super(context);

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        phone_music = MediaPlayer.create(getApplicationContext(), R.raw.bestmusic);
+        phone_music = MediaPlayer.create(getApplicationContext(), R.raw.mainmenu);
         phone_music.setLooping(true);
         phone_music.start();
         super.onCreate(savedInstanceState);

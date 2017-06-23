@@ -227,7 +227,7 @@ public class Points extends View {
         whiteSquares.add(new Square(w / 4, 2 + (-h / 4), w / 4 - 1, h / 4 - 1, white, false));
         if (time == false) {
             time = true;
-            new MyTimer(3000L, 10).start();
+            new MyTimer(4000L, 10).start();
         }
 //        new MyTimer(3000L, 10).start();
         rec = false;
@@ -307,7 +307,7 @@ public class Points extends View {
         public void onFinish() {
             if (true) {
                 V += k;
-                new MyTimer(3000L, 10).start();
+                new MyTimer(4000L, 10).start();
             }
         }
 
