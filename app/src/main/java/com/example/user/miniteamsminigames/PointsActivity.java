@@ -36,9 +36,9 @@ public class PointsActivity extends AppCompatActivity {
             mediaPlayer.stop();
         }
         rememberk = Points.k;
-        rememberV = Points.V;
+        rememberV = p.V;
         pause.setVisibility(View.INVISIBLE);
-        Points.V = 0;
+        p.V = 0;
         Points.k = 0;
         super.onPause();
     }
@@ -51,6 +51,7 @@ public class PointsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_points);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wasted);
         music_in_game = MediaPlayer.create(getApplicationContext(), R.raw.gdpiano);
+        p = (Points) findViewById(R.id.points);
         tv = (Button) findViewById(R.id.tv);
         menu = (Button) findViewById(R.id.menu);
         View.OnClickListener men = new View.OnClickListener() {
@@ -106,7 +107,7 @@ public class PointsActivity extends AppCompatActivity {
             mediaPlayer.start();
         }
         Points.k = rememberk;
-        Points.V = rememberV;
+        p.V = rememberV;
         pause.setVisibility(View.VISIBLE);
         super.onPostResume();
     }

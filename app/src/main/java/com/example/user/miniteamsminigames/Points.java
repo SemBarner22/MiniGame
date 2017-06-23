@@ -34,7 +34,7 @@ public class Points extends View {
     private ArrayList<Square> squares;
     private ArrayList<Square> squares2;
     private ArrayList<Square> whiteSquares;
-    public static double V;
+    public double V;
     public int score = 0;
     public int w, h;
     public static int k;
