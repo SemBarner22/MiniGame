@@ -210,7 +210,7 @@ public class Points extends View {
                 if (event.getX() > squares.get(0).x && event.getX() < squares.get(0).x + squares.get(0).w
                         && event.getY() > squares.get(0).y && event.getY() < squares.get(0).y + squares.get(0).h) {
                     score++;
-                    if (squares.size() != 0) {
+                    if (squares.size() != 1) {
                         squares.remove(0);
                         squares2.remove(0);
                     }
