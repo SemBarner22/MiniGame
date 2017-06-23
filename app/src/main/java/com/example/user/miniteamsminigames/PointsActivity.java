@@ -19,8 +19,8 @@ public class PointsActivity extends AppCompatActivity {
     public static Button tv;
     public double rememberV;
     public int rememberk;
-    public static boolean sound;
-    public static boolean music;
+    boolean sound;
+    boolean music;
     public static Points p;
     public static Button menu;
     public static ImageButton pause;

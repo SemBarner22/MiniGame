@@ -13,12 +13,22 @@ public class TapActivity extends AppCompatActivity {
     public static MediaPlayer tap_music;
     public static MediaPlayer loser;
     public static Button menu;
+    boolean sound;
+    boolean music;
     public static ImageButton pause;
     public static Button tv;
     public static double rememV;
 
     @Override
     protected void onPause() {
+        if (loser.isPlaying()) {
+            sound = true;
+            loser.stop();
+        }
+        if (tap_music.isPlaying()) {
+            music = true;
+            tap_music.stop();
+        }
         Tap_tap.state = State.PAUSED;
         TapActivity.rememV = Tap_tap.V;
         super.onPause();
@@ -26,6 +36,14 @@ public class TapActivity extends AppCompatActivity {
 
     @Override
     protected void onPostResume() {
+        if (music) {
+            music = false;
+            tap_music.start();
+        }
+        if (sound) {
+            sound = false;
+            loser.start();
+        }
         Tap_tap.V = rememV;
         Tap_tap.state = State.NOT_LOSE;
         super.onPostResume();

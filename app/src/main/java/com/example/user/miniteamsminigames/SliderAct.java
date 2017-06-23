@@ -13,10 +13,20 @@ public class SliderAct extends AppCompatActivity {
     public static Button tv;
     public static ImageButton pause;
     public static Button menue;
+    boolean music;
+    boolean sound;
     public static State st;
 
     @Override
     protected void onPause() {
+        if (lose_music.isPlaying()) {
+            sound = true;
+            lose_music.stop();
+        }
+        if (phon.isPlaying()) {
+            music = true;
+            phon.stop();
+        }
         st = SliderView.state;
         SliderView.state = State.PAUSED;
         pause.setVisibility(View.INVISIBLE);
@@ -25,6 +35,14 @@ public class SliderAct extends AppCompatActivity {
 
     @Override
     protected void onPostResume() {
+        if (music) {
+            music = false;
+            phon.start();
+        }
+        if (sound) {
+            sound = false;
+            lose_music.start();
+        }
         SliderView.state = st;
         pause.setVisibility(View.VISIBLE);
         super.onPostResume();
