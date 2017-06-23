@@ -136,7 +136,7 @@ public class Tap_tap extends View {
         bg.setColor(Color.BLACK);
         bg2.setColor(Color.WHITE);
         red.setColor(Color.RED);
-        int random = (int) (Math.random() * w + w / 4);
+        int random = (int) (Math.random() * w + w);
 //        int random = 200;
         Log.d("KEK111", Integer.toString(random));
         squares.add(new Square(-d / 2, -random + d / 2, d, random, bg2, true));

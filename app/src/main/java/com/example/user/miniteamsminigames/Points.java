@@ -210,7 +210,7 @@ public class Points extends View {
                 if (event.getX() > squares.get(0).x && event.getX() < squares.get(0).x + squares.get(0).w
                         && event.getY() > squares.get(0).y && event.getY() < squares.get(0).y + squares.get(0).h) {
                     score++;
-                    if (squares.size() != 1) {
+                    if (squares.size() != 0) {
                         squares.remove(0);
                         squares2.remove(0);
                     }
@@ -283,6 +283,7 @@ public class Points extends View {
         whiteSquares = new ArrayList<>();
         int random = (int) (Math.random() * 4);
         squares.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
+        squares2.add(new Square(random * w / 4, -h / 4, w / 4 - 1, h / 4 - 1, black, false));
         for (int i = 4; i >= -1; i--) {
             for (int j = 3; j >= 0; j--) {
                 whiteSquares.add(new Square(w / 4 * j, h / 4 * i, w / 4 - 1, h / 4 - 1, white, false));
